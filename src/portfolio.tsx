@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
-import VideoCard from "./components/VideoCard";
+import VideoCard from "./components/videocard";
 
 const NAV = [
   { path: "/", label: "About" },
