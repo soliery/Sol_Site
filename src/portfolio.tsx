@@ -12,7 +12,7 @@ const NAV = [
 const getVideos = (name) =>
   Array(4).fill(0).map((_, i) => ({
     title: `${name} ${i + 1}`,
-    video: "https://youtube.com",
+    video: "https://youtube.com", 
     description: "Sound design case study",
   }));
 
@@ -22,8 +22,9 @@ const VideoCard = ({ title, video, description }) => (
     <div className="aspect-video mb-3 overflow-hidden rounded-lg bg-black shadow-inner">
       <iframe 
         src={video} 
-        className="w-full h-full" 
+        className="w-full h-full border-0" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerPolicy="strict-origin-when-cross-origin"
         allowFullScreen 
       />
     </div>
@@ -43,10 +44,8 @@ const Background = () => {
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-[#0a0705]">
-      {/* Darker base with depth */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0f0a08] via-[#1a110d] to-[#241712]" />
 
-      {/* Your preferred line logic */}
       <svg className="absolute inset-0 w-full h-full opacity-50" preserveAspectRatio="none">
         {Array.from({ length: 42 }).map((_, i) => (
           <path
@@ -59,10 +58,8 @@ const Background = () => {
         ))}
       </svg>
 
-      {/* Dark Vignette - focused on the center */}
+      {/* Dark Vignette */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0705_90%)]" />
-      
-      {/* Subtle top fade for menu clarity */}
       <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-[#0a0705] to-transparent opacity-80" />
     </div>
   );
@@ -116,7 +113,7 @@ const Page = ({ name }) => (
 export default function Portfolio() {
   return (
     <Router>
-      <div className="relative min-h-screen text-white font-sans selection:bg-blue-500/30">
+      <div className="relative min-h-screen text-white font-sans">
         <Background />
         <Header />
         <NavBar />
@@ -126,7 +123,7 @@ export default function Portfolio() {
             <Route path="/" element={
               <div className="p-10 max-w-3xl mx-auto">
                 <h2 className="text-4xl font-bold mb-6">About Me</h2>
-                <p className="text-gray-300 text-lg leading-relaxed bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm">
+                <p className="text-gray-300 text-lg leading-relaxed">
                   Sound designer & composer for games and interactive media. 
                   Passionate about the intersection of technology and emotion.
                 </p>
@@ -143,3 +140,4 @@ export default function Portfolio() {
     </Router>
   );
 }
+
