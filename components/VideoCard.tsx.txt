@@ -1,0 +1,11 @@
+const VideoCard = ({ title, video, description }) => (
+  <div className="bg-[#2a1b14]/70 rounded-xl p-4 border border-white/5 hover:border-blue-400/40 transition">
+    <h3 className="text-white mb-2 font-semibold">{title}</h3>
+    <div className="aspect-video mb-2">
+      <iframe src={video} className="w-full h-full rounded-lg" allowFullScreen />
+    </div>
+    <p className="text-gray-300 text-sm">{description}</p>
+  </div>
+);
+
+export default VideoCard;
