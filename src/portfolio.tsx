@@ -80,7 +80,7 @@ const Background = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-[#1c120d] via-[#241a15] to-[#2d1e18]" />
       
       {/* ЛИНИИ ТЕПЕРЬ ЯРЧЕ (opacity-100) */}
-      <svg className="absolute inset-0 w-full h-full opacity-100" preserveAspectRatio="none">
+      <svg className="absolute inset-0 w-full h-full opacity-10" preserveAspectRatio="none">
         {Array.from({ length: 45 }).map((_, i) => (
           <path
             key={i}
