@@ -1,48 +1,26 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 
 // ==========================================
-// 1. YOUR DATA (VIDEO LINKS UPDATED)
+// 1. ТВОИ ДАННЫЕ
 // ==========================================
 const CONTENT_DATA = {
   "/factorio": {
     intro: "Sound designer & composer for games and interactive media. Focused on creating high-quality audio experiences.",
-    videos: [
-      { title: "Factorio Sound Design 1", video: "https://youtube.com", description: "Example work for Factorio." },
-    ]
+    videos: [{ title: "Factorio Project", video: "https://youtube.com", description: "Example description." }]
   },
-  "/king-of-meat": {
-    intro: "Briefly describe your work on King of Meat here.",
-    videos: [
-      { title: "King of Meat Trailer", video: "https://youtube.com", description: "Trailer sound design." }
-    ]
-  },
-  "/redesigns": {
-    intro: "Briefly describe your redesign projects here.",
-    videos: [
-      { title: "Doom Redesign", video: "https://youtube.com", description: "Full audio replacement." }
-    ]
-  },
-  "/advertising": {
-    intro: "Briefly describe your commercial work here.",
-    videos: [
-      { title: "Commercial Spot", video: "https://youtube.com", description: "Ad spot sound design." }
-    ]
-  },
-  "/music": {
-    intro: "Briefly describe your music compositions here.",
-    videos: [
-      { title: "Epic Track", video: "https://youtube.com", description: "Orchestral composition." }
-    ]
-  }
+  "/king-of-meat": { intro: "Briefly describe your work on King of Meat here.", videos: [{ title: "King of Meat Trailer", video: "https://youtube.com", description: "Trailer sound design." }] },
+  "/redesigns": { intro: "Briefly describe your redesign projects here.", videos: [{ title: "Doom Redesign", video: "https://youtube.com", description: "Full audio replacement." }] },
+  "/advertising": { intro: "Briefly describe your commercial work here.", videos: [{ title: "Commercial Spot", video: "https://youtube.com", description: "Ad spot sound design." }] },
+  "/music": { intro: "Briefly describe your music compositions here.", videos: [{ title: "Epic Track", video: "https://youtube.com", description: "Orchestral composition." }] }
 };
 
 // ==========================================
-// 2. COMPONENTS (CAPITALIZED VideoCard)
+// 2. КОМПОНЕНТЫ (ИСПРАВЛЕНО: VideoCard с большой буквы)
 // ==========================================
 const VideoCard = ({ title, video, description }) => (
-  <div className="bg-[#2a1b14]/70 rounded-xl p-4 border border-white/5 hover:border-blue-400/40 transition shadow-lg">
+  <div className="bg-[#2a1b14]/80 rounded-xl p-4 border border-white/10 hover:border-blue-300/60 transition shadow-xl">
     <h3 className="text-white mb-2 font-semibold">{title}</h3>
-    <div className="aspect-video mb-2 bg-black rounded-lg overflow-hidden">
+    <div className="aspect-video mb-3 overflow-hidden rounded-lg bg-black">
       <iframe 
         src={video} 
         className="w-full h-full" 
@@ -50,7 +28,7 @@ const VideoCard = ({ title, video, description }) => (
         allowFullScreen 
       />
     </div>
-    <p className="text-gray-300 text-sm">{description}</p>
+    <p className="text-gray-200 text-sm leading-relaxed">{description}</p>
   </div>
 );
 
@@ -74,27 +52,24 @@ const Background = () => {
   };
 
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden bg-[#120d0b]">
-      {/* Lighter background gradient for better PC visibility */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1c120d] via-[#2b1a13] to-[#3a261d]" />
+    <div className="fixed inset-0 -z-10 overflow-hidden bg-[#1a1412]">
+      {/* Более светлый фон для PC */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#251a15] via-[#1a1412] to-[#2d1e18]" />
       
-      {/* Increased opacity (80%) and strokeWidth (2) for PC visibility */}
-      <svg className="absolute inset-0 w-full h-full opacity-80" preserveAspectRatio="none">
+      {/* ЛИНИИ: opacity-100, stroke-2.5, светлый цвет rgba(147,197,253) */}
+      <svg className="absolute inset-0 w-full h-full opacity-100" preserveAspectRatio="none">
         {Array.from({ length: 45 }).map((_, i) => (
           <path
             key={i}
             d={generate(i * 45, 35 + i * 2, 80 + i * 28)}
-            // Brighter starting color
-            stroke={`rgba(96,165,250,${0.3 + i * 0.01})`}
-            strokeWidth={2}
+            stroke={`rgba(147,197,253,${0.4 + i * 0.02})`} 
+            strokeWidth={2.5} 
             fill="none"
           />
         ))}
       </svg>
       
-      {/* Softer vignette to prevent PC black crushing */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#120d0b_95%)]" />
-      <div className="absolute top-[140px] left-0 right-0 h-20 bg-gradient-to-b from-transparent to-[#120d0b]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,#1a1412_90%)]" />
     </div>
   );
 };
@@ -103,13 +78,12 @@ const Header = () => (
   <div className="relative z-20">
     <div className="h-40 bg-gradient-to-r from-[#1c120d] to-[#2b1a13] border-b border-white/5" />
     <div className="absolute left-8 -bottom-16 flex items-end gap-6">
-      {/* Large Avatar */}
-      <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#120d0b] shadow-2xl overflow-hidden flex-shrink-0">
+      <div className="w-32 h-32 rounded-2xl bg-gray-600 border-4 border-[#1a1412] shadow-2xl overflow-hidden flex-shrink-0">
         <div className="w-full h-full bg-gradient-to-br from-gray-400 to-gray-600" />
       </div>
       <div className="pb-4">
-        <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
-        <p className="text-blue-400 text-lg font-medium drop-shadow-md">Sound Designer / Composer</p>
+        <h1 className="text-3xl font-bold tracking-tight text-white">Val Sol</h1>
+        <p className="text-blue-400 text-lg font-medium">Sound Designer / Composer</p>
       </div>
     </div>
   </div>
@@ -118,18 +92,17 @@ const Header = () => (
 const NavBar = () => {
   const location = useLocation();
   return (
-    // overflow-x-auto allows horizontal swiping on mobile
-    <div className="relative z-10 border-b border-white/10 bg-[#120d0b]/90 backdrop-blur-md overflow-x-auto no-scrollbar">
-      <div className="flex gap-6 px-6 pt-20 pb-4 min-w-max">
+    <div className="relative z-10 border-b border-white/10 bg-[#1a1412]/95 backdrop-blur-md overflow-x-auto">
+      <div className="flex gap-6 md:gap-10 px-6 md:px-10 pt-20 pb-4 min-w-max">
         {NAV.map((item) => (
           <Link
             key={item.path}
             to={item.path}
-            className={`relative px-2 py-1 transition-colors whitespace-nowrap ${
+            className={`relative px-1 py-1 text-sm md:text-base transition-colors whitespace-nowrap ${
               location.pathname === item.path ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
             }`}
           >
-            <span className="relative z-10">{item.label}</span>
+            {item.label}
           </Link>
         ))}
       </div>
@@ -140,10 +113,10 @@ const NavBar = () => {
 const Page = ({ path }) => {
   const data = CONTENT_DATA[path] || { intro: "", videos: [] };
   return (
-    <div className="p-8 max-w-7xl mx-auto">
+    <div className="p-6 md:p-8 max-w-7xl mx-auto">
       {data.intro && (
-        <div className="mb-10 max-w-3xl">
-          <p className="text-gray-300 text-lg leading-relaxed">{data.intro}</p>
+        <div className="mb-8 max-w-3xl">
+          <p className="text-gray-200 text-lg leading-relaxed">{data.intro}</p>
         </div>
       )}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -158,27 +131,23 @@ const Page = ({ path }) => {
 export default function Portfolio() {
   return (
     <Router>
-      <div className="relative min-h-screen text-white font-sans bg-[#120d0b]">
+      <div className="relative min-h-screen text-white font-sans bg-[#1a1412]">
         <Background />
         <Header />
         <NavBar />
         <main className="relative z-10">
           <Routes>
             <Route path="/" element={
-              <div className="p-10 max-w-3xl mx-auto">
-                <h2 className="text-4xl font-bold mb-6">About Me</h2>
-                <p className="text-gray-300 text-lg leading-relaxed">
+              <div className="p-8 md:p-10 max-w-3xl mx-auto">
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">About Me</h2>
+                <p className="text-gray-200 text-lg leading-relaxed">
                   Sound designer & composer for games and interactive media. 
                   Focused on creating high-quality audio experiences.
                 </p>
               </div>
             } />
             {NAV.slice(1).map((item) => (
-              <Route 
-                key={item.path} 
-                path={item.path} 
-                element={<Page path={item.path} />} 
-              />
+              <Route key={item.path} path={item.path} element={<Page path={item.path} />} />
             ))}
           </Routes>
         </main>
@@ -186,3 +155,4 @@ export default function Portfolio() {
     </Router>
   );
 }
+
