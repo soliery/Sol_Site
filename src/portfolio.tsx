@@ -7,7 +7,7 @@ const CONTENT_DATA = {
   "/factorio": [
     { 
       title: "Factorio Sound Design 1", 
-      video: "https://youtube.com", 
+      video: "https://www.youtube.com/embed/dQw4w9WgXcQ", 
       description: "Описание твоего первого проекта для Factorio." 
     },
     { 
