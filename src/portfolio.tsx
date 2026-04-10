@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 
 // ==========================================
-// 1. YOUR DATA (ССЫЛКИ ЗАМЕНИЛ НА РАБОЧИЕ ДЛЯ ТЕСТА)
+// 1. YOUR DATA (EDIT TEXT & LINKS HERE)
 // ==========================================
 const CONTENT_DATA = {
   "/factorio": {
@@ -75,27 +75,21 @@ const Background = () => {
   };
 
   return (
-    // ФОН СТАЛ СВЕТЛЕЕ: bg-[#140e0b]
-    <div className="fixed inset-0 -z-10 overflow-hidden bg-[#140e0b]">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1c120d] via-[#241a15] to-[#2d1e18]" />
-      
-      {/* ЛИНИИ ТЕПЕРЬ ЯРЧЕ (opacity-100) */}
-      <svg className="absolute inset-0 w-full h-full opacity-10" preserveAspectRatio="none">
+    <div className="fixed inset-0 -z-10 overflow-hidden bg-[#0a0705]">
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0f0a08] via-[#1a110d] to-[#241712]" />
+      <svg className="absolute inset-0 w-full h-full opacity-50" preserveAspectRatio="none">
         {Array.from({ length: 45 }).map((_, i) => (
           <path
             key={i}
             d={generate(i * 45, 35 + i * 2, 80 + i * 28)}
-            // ЦВЕТ ЛИНИЙ СТАЛ СВЕТЛЕЕ И БАЗА 0.3 (rgba(96,165,250))
-            stroke={`rgba(96,165,250,${0.3 + i * 0.01})`}
-            strokeWidth={2} // ТОЛЩИНА 2
+            stroke={`rgba(59,130,246,${0.15 + i * 0.01})`}
+            strokeWidth={1}
             fill="none"
           />
         ))}
       </svg>
-      
-      {/* ВИНЬЕТКА СМЯГЧЕНА (95%) */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#140e0b_95%)]" />
-      <div className="absolute top-[140px] left-0 right-0 h-20 bg-gradient-to-b from-transparent to-[#140e0b]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0705_90%)]" />
+      <div className="absolute top-[140px] left-0 right-0 h-20 bg-gradient-to-b from-transparent to-[#0a0705]" />
     </div>
   );
 };
@@ -104,7 +98,7 @@ const Header = () => (
   <div className="relative z-20">
     <div className="h-40 bg-gradient-to-r from-[#1c120d] to-[#2b1a13] border-b border-white/5" />
     <div className="absolute left-8 -bottom-16 flex items-end gap-6">
-      <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#140e0b] shadow-2xl overflow-hidden flex-shrink-0">
+      <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden">
         <div className="w-full h-full bg-gradient-to-br from-gray-400 to-gray-600" />
       </div>
       <div className="pb-4">
@@ -118,21 +112,18 @@ const Header = () => (
 const NavBar = () => {
   const location = useLocation();
   return (
-    // МОБИЛЬНАЯ ОПТИМИЗАЦИЯ: добавил overflow-x-auto и min-w-max
-    <div className="relative z-10 flex border-b border-white/10 bg-[#0a0705]/80 backdrop-blur-md overflow-x-auto no-scrollbar">
-      <div className="flex gap-6 px-6 pt-20 pb-4 min-w-max">
-        {NAV.map((item) => (
-          <Link
-            key={item.path}
-            to={item.path}
-            className={`relative px-2 py-1 transition-colors whitespace-nowrap ${
-              location.pathname === item.path ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
-            }`}
-          >
-            <span className="relative z-10">{item.label}</span>
-          </Link>
-        ))}
-      </div>
+    <div className="relative z-10 flex gap-6 px-6 pt-20 pb-4 border-b border-white/10 bg-[#0a0705]/80 backdrop-blur-md">
+      {NAV.map((item) => (
+        <Link
+          key={item.path}
+          to={item.path}
+          className={`relative px-2 py-1 transition-colors ${
+            location.pathname === item.path ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
+          }`}
+        >
+          <span className="relative z-10">{item.label}</span>
+        </Link>
+      ))}
     </div>
   );
 };
@@ -141,6 +132,7 @@ const Page = ({ path }) => {
   const data = CONTENT_DATA[path] || { intro: "", videos: [] };
   return (
     <div className="p-8 max-w-7xl mx-auto">
+      {/* Intro text without background plate, matching 'About' font style */}
       {data.intro && (
         <div className="mb-10 max-w-3xl">
           <p className="text-gray-300 text-lg leading-relaxed">
@@ -149,7 +141,7 @@ const Page = ({ path }) => {
         </div>
       )}
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid md:grid-cols-2 gap-8">
         {data.videos.map((v, i) => (
           <VideoCard key={i} {...v} />
         ))}
@@ -161,7 +153,7 @@ const Page = ({ path }) => {
 export default function Portfolio() {
   return (
     <Router>
-      <div className="relative min-h-screen text-white font-sans bg-[#140e0b]">
+      <div className="relative min-h-screen text-white font-sans">
         <Background />
         <Header />
         <NavBar />
