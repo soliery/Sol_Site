@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
-import VideoCard from "./components/videocard"; // Importing the lowercase name
+// Use a Capital letter for the component name during import
+import VideoCard from "./components/videocard"; 
 
 const NAV = [
   { path: "/", label: "About" },
@@ -10,10 +11,11 @@ const NAV = [
   { path: "/music", label: "Music" },
 ];
 
+// Ensure URLs use the /embed/ format for YouTube
 const getVideos = (name) =>
   Array(4).fill(0).map((_, i) => ({
     title: `${name} ${i + 1}`,
-    video: "https://youtube.com",
+    video: "https://youtube.com", 
     description: "Sound design example work",
   }));
 
@@ -30,7 +32,6 @@ const Background = () => {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-[#0a0705]">
       <div className="absolute inset-0 bg-gradient-to-br from-[#0f0a08] via-[#1a110d] to-[#241712]" />
-
       <svg className="absolute inset-0 w-full h-full opacity-60" preserveAspectRatio="none">
         {Array.from({ length: 45 }).map((_, i) => (
           <path
@@ -42,7 +43,6 @@ const Background = () => {
           />
         ))}
       </svg>
-
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0705_90%)]" />
       <div className="absolute top-[140px] left-0 right-0 h-20 bg-gradient-to-b from-transparent to-[#0a0705]" />
     </div>
@@ -87,7 +87,7 @@ const NavBar = () => {
 const Page = ({ name }) => (
   <div className="p-6 max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-2 gap-6">
     {getVideos(name).map((v, i) => (
-      <videocard key={i} {...v} /> // Using the lowercase component name
+      <VideoCard key={i} {...v} /> 
     ))}
   </div>
 );
@@ -99,7 +99,6 @@ export default function Portfolio() {
         <Background />
         <Header />
         <NavBar />
-
         <main className="relative z-10">
           <Routes>
             <Route path="/" element={
@@ -121,6 +120,7 @@ export default function Portfolio() {
     </Router>
   );
 }
+
 
 
 
