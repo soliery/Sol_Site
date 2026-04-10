@@ -1,6 +1,55 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 
-// Component name must be Capitalized for React to render it
+// ==========================================
+// 1. ТВОИ ДАННЫЕ (МЕНЯЙ ССЫЛКИ ЗДЕСЬ)
+// ==========================================
+const CONTENT_DATA = {
+  "/factorio": [
+    { 
+      title: "Factorio Sound Design 1", 
+      video: "https://youtube.com", 
+      description: "Описание твоего первого проекта для Factorio." 
+    },
+    { 
+      title: "Factorio Ambience", 
+      video: "https://youtube.com", 
+      description: "Как я создавал звуки окружения." 
+    }
+  ],
+  "/king-of-meat": [
+    { 
+      title: "King of Meat Trailer", 
+      video: "https://youtube.com", 
+      description: "Работа над звуковыми эффектами в трейлере." 
+    }
+  ],
+  "/redesigns": [
+    { 
+      title: "Doom Redesign", 
+      video: "https://youtube.com", 
+      description: "Пример редизайна звука." 
+    }
+  ],
+  "/advertising": [
+    { 
+      title: "Commercial Work", 
+      video: "https://youtube.com", 
+      description: "Звук для рекламного ролика." 
+    }
+  ],
+  "/music": [
+    { 
+      title: "My Composition", 
+      video: "https://youtube.com", 
+      description: "Оркестровая музыка для игр." 
+    }
+  ]
+};
+
+// ==========================================
+// 2. КОМПОНЕНТЫ И ЛОГИКА (НЕ ТРОГАЙ, ЕСЛИ ВСЁ НРАВИТСЯ)
+// ==========================================
+
 const VideoCard = ({ title, video, description }) => (
   <div className="bg-[#2a1b14]/70 rounded-xl p-4 border border-white/5 hover:border-blue-400/40 transition shadow-lg">
     <h3 className="text-white mb-2 font-semibold">{title}</h3>
@@ -25,15 +74,7 @@ const NAV = [
   { path: "/music", label: "Music" },
 ];
 
-const getVideos = (name) =>
-  Array(4).fill(0).map((_, i) => ({
-    title: `${name} ${i + 1}`,
-    video: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    description: "Sound design example work"
-  }));
-
 const Background = () => {
-  // Line logic from your preferred version (spread across height)
   const generate = (phase, amp, y) => {
     let path = "";
     for (let x = -100; x <= 2200; x += 40) {
@@ -45,9 +86,7 @@ const Background = () => {
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-[#0a0705]">
-      {/* Dark background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0f0a08] via-[#1a110d] to-[#241712]" />
-
       <svg className="absolute inset-0 w-full h-full opacity-50" preserveAspectRatio="none">
         {Array.from({ length: 45 }).map((_, i) => (
           <path
@@ -59,11 +98,7 @@ const Background = () => {
           />
         ))}
       </svg>
-
-      {/* Dark Vignette around the edges */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0705_90%)]" />
-      
-      {/* Fade under menu area */}
       <div className="absolute top-[140px] left-0 right-0 h-20 bg-gradient-to-b from-transparent to-[#0a0705]" />
     </div>
   );
@@ -71,12 +106,12 @@ const Background = () => {
 
 const Header = () => (
   <div className="relative z-20">
-    <div className="h-40 bg-gradient-to-r from-[#1c120d] to-[#2b1a13] shadow-md" />
+    <div className="h-40 bg-gradient-to-r from-[#1c120d] to-[#2b1a13]" />
     <div className="absolute left-6 -bottom-10 flex items-end gap-4">
       <div className="w-20 h-20 rounded-xl bg-gray-500 border-2 border-white/20 shadow-xl" />
       <div className="pb-1">
-        <h1 className="text-2xl font-bold">Your Name</h1>
-        <p className="text-gray-300 text-sm">Sound Designer / Composer</p>
+        <h1 className="text-2xl font-bold tracking-tight">Your Name</h1>
+        <p className="text-gray-300 text-sm font-medium">Sound Designer / Composer</p>
       </div>
     </div>
   </div>
@@ -85,7 +120,7 @@ const Header = () => (
 const NavBar = () => {
   const location = useLocation();
   return (
-    <div className="relative z-10 flex gap-6 px-6 pt-16 pb-4 border-b border-white/10 bg-[#0a0705]/80">
+    <div className="relative z-10 flex gap-6 px-6 pt-16 pb-4 border-b border-white/10 bg-[#0a0705]/80 backdrop-blur-md">
       {NAV.map((item) => (
         <Link
           key={item.path}
@@ -94,7 +129,6 @@ const NavBar = () => {
             location.pathname === item.path ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
           }`}
         >
-          {/* Active glow removed as requested */}
           <span className="relative z-10">{item.label}</span>
         </Link>
       ))}
@@ -102,15 +136,18 @@ const NavBar = () => {
   );
 };
 
-const Page = ({ name }) => (
-  <div className="p-8 max-w-7xl mx-auto">
-    <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-      {getVideos(name).map((v, i) => (
-        <VideoCard key={i} {...v} />
-      ))}
+const Page = ({ path }) => {
+  const videos = CONTENT_DATA[path] || [];
+  return (
+    <div className="p-8 max-w-7xl mx-auto">
+      <div className="grid md:grid-cols-2 gap-8">
+        {videos.map((v, i) => (
+          <VideoCard key={i} {...v} />
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default function Portfolio() {
   return (
@@ -119,7 +156,6 @@ export default function Portfolio() {
         <Background />
         <Header />
         <NavBar />
-
         <main className="relative z-10">
           <Routes>
             <Route path="/" element={
@@ -131,11 +167,13 @@ export default function Portfolio() {
                 </p>
               </div>
             } />
-            <Route path="/factorio" element={<Page name="Factorio" />} />
-            <Route path="/king-of-meat" element={<Page name="King of Meat" />} />
-            <Route path="/redesigns" element={<Page name="Redesigns" />} />
-            <Route path="/advertising" element={<Page name="Advertising" />} />
-            <Route path="/music" element={<Page name="Music" />} />
+            {NAV.slice(1).map((item) => (
+              <Route 
+                key={item.path} 
+                path={item.path} 
+                element={<Page path={item.path} />} 
+              />
+            ))}
           </Routes>
         </main>
       </div>
