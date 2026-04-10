@@ -1,21 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
-
-// IMPORTANT: If you have a separate VideoCard component file, 
-// make sure the import path is correct. I'll define it here to be safe.
-const VideoCard = ({ title, video, description }) => (
-  <div className="bg-[#2a1b14]/70 rounded-xl p-4 border border-white/5 hover:border-blue-400/40 transition">
-    <h3 className="text-white mb-2 font-semibold">{title}</h3>
-    <div className="aspect-video mb-2">
-      <iframe 
-        src={video} 
-        className="w-full h-full rounded-lg" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen 
-      />
-    </div>
-    <p className="text-gray-300 text-sm">{description}</p>
-  </div>
-);
+import videocard from "./components/videocard"; // Importing the lowercase name
 
 const NAV = [
   { path: "/", label: "About" },
@@ -29,12 +13,11 @@ const NAV = [
 const getVideos = (name) =>
   Array(4).fill(0).map((_, i) => ({
     title: `${name} ${i + 1}`,
-    video: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    video: "https://youtube.com",
     description: "Sound design example work",
   }));
 
 const Background = () => {
-  // Back to your exact math logic
   const generate = (phase, amp, y) => {
     let path = "";
     for (let x = -100; x <= 2000; x += 40) {
@@ -46,7 +29,6 @@ const Background = () => {
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-[#0a0705]">
-      {/* Darkened version of your gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0f0a08] via-[#1a110d] to-[#241712]" />
 
       <svg className="absolute inset-0 w-full h-full opacity-60" preserveAspectRatio="none">
@@ -61,10 +43,7 @@ const Background = () => {
         ))}
       </svg>
 
-      {/* Your preferred Vignette */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0705_90%)]" />
-      
-      {/* Fade under menu */}
       <div className="absolute top-[140px] left-0 right-0 h-20 bg-gradient-to-b from-transparent to-[#0a0705]" />
     </div>
   );
@@ -108,7 +87,7 @@ const NavBar = () => {
 const Page = ({ name }) => (
   <div className="p-6 max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-2 gap-6">
     {getVideos(name).map((v, i) => (
-      <VideoCard key={i} {...v} />
+      <videocard key={i} {...v} /> // Using the lowercase component name
     ))}
   </div>
 );
@@ -127,8 +106,7 @@ export default function Portfolio() {
               <div className="p-10 max-w-3xl mx-auto">
                 <h2 className="text-4xl font-bold mb-4">About Me</h2>
                 <p className="text-gray-300 text-lg leading-relaxed">
-                  Sound designer & composer for games and interactive media. 
-                  Focused on creating high-quality audio experiences.
+                  Sound designer & composer for games and interactive media.
                 </p>
               </div>
             } />
@@ -143,5 +121,6 @@ export default function Portfolio() {
     </Router>
   );
 }
+
 
 
