@@ -1,53 +1,44 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 
 // ==========================================
-// 1. ТВОИ ДАННЫЕ (МЕНЯЙ ССЫЛКИ ЗДЕСЬ)
+// 1. ТВОИ ДАННЫЕ (МЕНЯЙ ТЕКСТ И ССЫЛКИ ЗДЕСЬ)
 // ==========================================
 const CONTENT_DATA = {
-  "/factorio": [
-    { 
-      title: "Factorio Sound Design 1", 
-      video: "https://www.youtube.com/embed/dQw4w9WgXcQ", 
-      description: "Описание твоего первого проекта для Factorio." 
-    },
-    { 
-      title: "Factorio Ambience", 
-      video: "https://youtube.com", 
-      description: "Как я создавал звуки окружения." 
-    }
-  ],
-  "/king-of-meat": [
-    { 
-      title: "King of Meat Trailer", 
-      video: "https://youtube.com", 
-      description: "Работа над звуковыми эффектами в трейлере." 
-    }
-  ],
-  "/redesigns": [
-    { 
-      title: "Doom Redesign", 
-      video: "https://youtube.com", 
-      description: "Пример редизайна звука." 
-    }
-  ],
-  "/advertising": [
-    { 
-      title: "Commercial Work", 
-      video: "https://youtube.com", 
-      description: "Звук для рекламного ролика." 
-    }
-  ],
-  "/music": [
-    { 
-      title: "My Composition", 
-      video: "https://youtube.com", 
-      description: "Оркестровая музыка для игр." 
-    }
-  ]
+  "/factorio": {
+    intro: "Здесь я описываю свой опыт работы над Factorio. Я создавал индустриальные шумы, звуки механизмов и общую атмосферу автоматизации.",
+    videos: [
+      { title: "Factorio Sound Design 1", video: "https://youtube.com", description: "Описание первого видео." },
+      { title: "Factorio Ambience", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", description: "Описание второго видео." }
+    ]
+  },
+  "/king-of-meat": {
+    intro: "King of Meat — это проект, где я сфокусировался на динамичном звуке для экшен-сцен и уникальных звуках персонажей.",
+    videos: [
+      { title: "Trailer Sound", video: "https://youtube.com", description: "Работа над трейлером." }
+    ]
+  },
+  "/redesigns": {
+    intro: "В этом разделе представлены мои редизайны звука для известных игр и фильмов, чтобы показать мой творческий подход.",
+    videos: [
+      { title: "Doom Redesign", video: "https://youtube.com", description: "Полная замена звуковой дорожки." }
+    ]
+  },
+  "/advertising": {
+    intro: "Мои работы в рекламе: создание чистого, продающего звука и работа с дикторской озвучкой.",
+    videos: [
+      { title: "Commercial Spot", video: "https://youtube.com", description: "Рекламный ролик." }
+    ]
+  },
+  "/music": {
+    intro: "Здесь собраны мои музыкальные композиции в разных жанрах — от оркестровой музыки до электроники.",
+    videos: [
+      { title: "Epic Track", video: "https://youtube.com", description: "Оркестровый трек." }
+    ]
+  }
 };
 
 // ==========================================
-// 2. КОМПОНЕНТЫ И ЛОГИКА (НЕ ТРОГАЙ, ЕСЛИ ВСЁ НРАВИТСЯ)
+// 2. КОМПОНЕНТЫ И ЛОГИКА
 // ==========================================
 
 const VideoCard = ({ title, video, description }) => (
@@ -106,12 +97,14 @@ const Background = () => {
 
 const Header = () => (
   <div className="relative z-20">
-    <div className="h-40 bg-gradient-to-r from-[#1c120d] to-[#2b1a13]" />
-    <div className="absolute left-6 -bottom-10 flex items-end gap-4">
-      <div className="w-32 h-32 rounded-xl bg-gray-500 border-2 border-white/20 shadow-xl" />
-      <div className="pb-1">
-        <h1 className="text-2xl font-bold tracking-tight">Your Name</h1>
-        <p className="text-gray-300 text-sm font-medium">Sound Designer / Composer</p>
+    <div className="h-40 bg-gradient-to-r from-[#1c120d] to-[#2b1a13] border-b border-white/5" />
+    <div className="absolute left-8 -bottom-16 flex items-end gap-6">
+      <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden">
+        <div className="w-full h-full bg-gradient-to-br from-gray-400 to-gray-600" />
+      </div>
+      <div className="pb-4">
+        <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-md">Your Name</h1>
+        <p className="text-blue-400 text-lg font-medium drop-shadow-md">Sound Designer / Composer</p>
       </div>
     </div>
   </div>
@@ -120,7 +113,7 @@ const Header = () => (
 const NavBar = () => {
   const location = useLocation();
   return (
-    <div className="relative z-10 flex gap-6 px-6 pt-16 pb-4 border-b border-white/10 bg-[#0a0705]/80 backdrop-blur-md">
+    <div className="relative z-10 flex gap-6 px-6 pt-20 pb-4 border-b border-white/10 bg-[#0a0705]/80 backdrop-blur-md">
       {NAV.map((item) => (
         <Link
           key={item.path}
@@ -137,11 +130,20 @@ const NavBar = () => {
 };
 
 const Page = ({ path }) => {
-  const videos = CONTENT_DATA[path] || [];
+  const data = CONTENT_DATA[path] || { intro: "", videos: [] };
   return (
     <div className="p-8 max-w-7xl mx-auto">
+      {/* Поле для описания проекта в начале страницы */}
+      {data.intro && (
+        <div className="mb-10 p-6 border-l-4 border-blue-500 bg-white/5 backdrop-blur-sm rounded-r-xl">
+          <p className="text-gray-200 text-lg italic leading-relaxed">
+            {data.intro}
+          </p>
+        </div>
+      )}
+      
       <div className="grid md:grid-cols-2 gap-8">
-        {videos.map((v, i) => (
+        {data.videos.map((v, i) => (
           <VideoCard key={i} {...v} />
         ))}
       </div>
@@ -180,6 +182,7 @@ export default function Portfolio() {
     </Router>
   );
 }
+
 
 
 
