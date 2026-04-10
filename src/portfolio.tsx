@@ -108,7 +108,7 @@ const Header = () => (
   <div className="relative z-20">
     <div className="h-40 bg-gradient-to-r from-[#1c120d] to-[#2b1a13]" />
     <div className="absolute left-6 -bottom-10 flex items-end gap-4">
-      <div className="w-20 h-20 rounded-xl bg-gray-500 border-2 border-white/20 shadow-xl" />
+      <div className="w-32 h-32 rounded-xl bg-gray-500 border-2 border-white/20 shadow-xl" />
       <div className="pb-1">
         <h1 className="text-2xl font-bold tracking-tight">Your Name</h1>
         <p className="text-gray-300 text-sm font-medium">Sound Designer / Composer</p>
