@@ -1,44 +1,43 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 
 // ==========================================
-// 1. ТВОИ ДАННЫЕ (МЕНЯЙ ТЕКСТ И ССЫЛКИ ЗДЕСЬ)
+// 1. YOUR DATA (EDIT TEXT & LINKS HERE)
 // ==========================================
 const CONTENT_DATA = {
   "/factorio": {
-    intro: "Здесь я описываю свой опыт работы над Factorio. Я создавал индустриальные шумы, звуки механизмов и общую атмосферу автоматизации.",
+    intro: "Sound designer & composer for games and interactive media. Focused on creating high-quality audio experiences.",
     videos: [
-      { title: "Factorio Sound Design 1", video: "https://youtube.com", description: "Описание первого видео." },
-      { title: "Factorio Ambience", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", description: "Описание второго видео." }
+      { title: "Factorio Sound Design 1", video: "https://youtube.com", description: "Example description." },
     ]
   },
   "/king-of-meat": {
-    intro: "King of Meat — это проект, где я сфокусировался на динамичном звуке для экшен-сцен и уникальных звуках персонажей.",
+    intro: "Briefly describe your work on King of Meat here.",
     videos: [
-      { title: "Trailer Sound", video: "https://youtube.com", description: "Работа над трейлером." }
+      { title: "Trailer Sound", video: "https://youtube.com", description: "Work on trailer effects." }
     ]
   },
   "/redesigns": {
-    intro: "В этом разделе представлены мои редизайны звука для известных игр и фильмов, чтобы показать мой творческий подход.",
+    intro: "Briefly describe your redesign projects here.",
     videos: [
-      { title: "Doom Redesign", video: "https://youtube.com", description: "Полная замена звуковой дорожки." }
+      { title: "Doom Redesign", video: "https://youtube.com", description: "Full audio replacement." }
     ]
   },
   "/advertising": {
-    intro: "Мои работы в рекламе: создание чистого, продающего звука и работа с дикторской озвучкой.",
+    intro: "Briefly describe your commercial work here.",
     videos: [
-      { title: "Commercial Spot", video: "https://youtube.com", description: "Рекламный ролик." }
+      { title: "Commercial Spot", video: "https://youtube.com", description: "Ad spot sound design." }
     ]
   },
   "/music": {
-    intro: "Здесь собраны мои музыкальные композиции в разных жанрах — от оркестровой музыки до электроники.",
+    intro: "Briefly describe your music compositions here.",
     videos: [
-      { title: "Epic Track", video: "https://youtube.com", description: "Оркестровый трек." }
+      { title: "Epic Track", video: "https://youtube.com", description: "Orchestral composition." }
     ]
   }
 };
 
 // ==========================================
-// 2. КОМПОНЕНТЫ И ЛОГИКА
+// 2. COMPONENTS AND LOGIC
 // ==========================================
 
 const VideoCard = ({ title, video, description }) => (
@@ -133,10 +132,10 @@ const Page = ({ path }) => {
   const data = CONTENT_DATA[path] || { intro: "", videos: [] };
   return (
     <div className="p-8 max-w-7xl mx-auto">
-      {/* Поле для описания проекта в начале страницы */}
+      {/* Intro text without background plate, matching 'About' font style */}
       {data.intro && (
-        <div className="mb-10 p-6 border-l-4 border-blue-500 bg-white/5 backdrop-blur-sm rounded-r-xl">
-          <p className="text-gray-200 text-lg italic leading-relaxed">
+        <div className="mb-10 max-w-3xl">
+          <p className="text-gray-300 text-lg leading-relaxed">
             {data.intro}
           </p>
         </div>
@@ -182,9 +181,3 @@ export default function Portfolio() {
     </Router>
   );
 }
-
-
-
-
-
-
