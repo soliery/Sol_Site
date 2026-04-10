@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
-import videocard from "./components/videocard"; // Importing the lowercase name
+import VideoCard from "./components/videocard"; // Importing the lowercase name
 
 const NAV = [
   { path: "/", label: "About" },
