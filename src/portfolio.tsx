@@ -102,7 +102,7 @@ const Header = () => (
         <div className="w-full h-full bg-gradient-to-br from-gray-400 to-gray-600" />
       </div>
       <div className="pb-4">
-        <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-md">Your Name</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
         <p className="text-blue-400 text-lg font-medium drop-shadow-md">Sound Designer / Composer</p>
       </div>
     </div>
