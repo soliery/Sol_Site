@@ -57,8 +57,8 @@ const VideoCard = ({ title, video, description }) => (
 
 const NAV = [
   { path: "/", label: "About" },
-  { path: "/factorio", label: "Factorio" },
   { path: "/king-of-meat", label: "King of Meat" },
+  { path: "/factorio", label: "Factorio" },
   { path: "/redesigns", label: "Redesigns" },
   { path: "/advertising", label: "Advertising" },
   { path: "/music", label: "Music" },
@@ -164,28 +164,27 @@ export default function Portfolio() {
         <NavBar />
         <main className="relative z-10">
           <Routes>
-           <Route path="/" element={
-  <div className="p-10 max-w-3xl mx-auto">
-    <h2 className="text-4xl font-bold mb-6">About Me</h2>
-    
-    {/* Вводные строчки: цвет как в меню, размер крупный (text-lg) */}
-    <p className="text-gray-400 text-lg font-medium mb-6">
-      Senior Sound Designer and Technical Audio Engineer<br />
-      Credits: King of Meat (Amazon Games), Factorio, Wargaming
-    </p>
+            <Route path="/" element={
+              <div className="p-10 max-w-3xl mx-auto">
+                <h2 className="text-4xl font-bold mb-6">About Me</h2>
+                
+                <p className="text-gray-400 text-lg font-medium mb-6">
+                  Senior Sound Designer and Technical Audio Engineer<br />
+                  Credits: King of Meat (Amazon Games), Factorio, Wargaming
+                </p>
 
-    {/* Основной текст: цвет посветлее, но размер чуть мельче (стандартный, без text-lg) */}
-    <p className="text-gray-300 leading-relaxed" style={{ whiteSpace: 'pre-line' }}>
-      {`For me, audio is far more than just a job. It is a passion driven by a constant search for the most efficient technical solutions and the most expressive sonic design. I believe that sound and music are the ultimate tools for player immersion because they bypass the filters of language and symbols, striking directly at the subconscious to evoke immediate emotion and instinct.
+                <p className="text-gray-300 leading-relaxed" style={{ whiteSpace: 'pre-line' }}>
+                  {`For me, audio is far more than just a job. It is a passion driven by a constant search for the most efficient technical solutions and the most expressive sonic design. I believe that sound and music are the ultimate tools for player immersion because they bypass the filters of language and symbols, striking directly at the subconscious to evoke immediate emotion and instinct.
 
 For over 10 years, I have been bridging the gap between creative sound art and technical implementation across PC, console, and mobile games. I specialize in building robust, adaptive, and performance-aware audio frameworks using Wwise, FMOD, and Unreal Engine.
 
 I do not just create sounds; I design how they behave. From asset optimization to writing complex event-driven logic alongside programmers, my goal is always to maximize the impact of audio communication with the player while ensuring flawless technical execution.
 
 With a background spanning TV post-production, electronic music, and 250+ field recording trips, I bring an old-school obsession with pristine audio quality into modern, systemic game development.`}
-    </p>
-  </div>
-} />
+                </p>
+              </div>
+            } />
+            {/* Этот метод автоматически построит страницы по новому порядку из NAV */}
             {NAV.slice(1).map((item) => (
               <Route 
                 key={item.path} 
