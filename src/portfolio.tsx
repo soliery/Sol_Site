@@ -11,9 +11,10 @@ const CONTENT_DATA = {
     ]
   },
   "/king-of-meat": {
-    intro: "Briefly describe your work on King of Meat here.",
+    intro: "My work for King of Meat project. Audio and tech described in short videos ",
     videos: [
-      { title: "Trailer Sound", video: "https://youtube.com", description: "Work on trailer effects." }
+      { title: "Music system for multiplayer with UGC", video: "https://www.youtube.com/embed/FLcrB9zjiYk", description: "The unique challenge lay in the game’s format: it’s a networked multiplayer title with robust User-Generated Content (UGC) capabilities. The system couldn’t rely on pre-scripted triggers. Instead, it had to analyze player actions in real-time and adapt to any user-created level, no matter how chaotic or unconventional.
+The video below offers a brief overview of the implementation in Wwise." }
     ]
   },
   "/redesigns": {
