@@ -99,7 +99,12 @@ const Header = () => (
     <div className="h-40 bg-gradient-to-r from-[#1c120d] to-[#2b1a13] border-b border-white/5" />
     <div className="absolute left-8 -bottom-16 flex items-end gap-6">
       <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden">
-        <div className="w-full h-full bg-gradient-to-br from-gray-400 to-gray-600" />
+        {/* Заменили пустой блок на картинку: */}
+        <img 
+          src="/avatar.jpg" 
+          alt="Val Sol" 
+          className="w-full h-full object-cover" 
+        />
       </div>
       <div className="pb-4">
         <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
