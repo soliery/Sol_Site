@@ -13,7 +13,7 @@ const CONTENT_DATA = {
         description: `The unique challenge lay in the game’s format: it’s a networked multiplayer title with robust User-Generated Content (UGC) capabilities. The system couldn’t rely on pre-scripted triggers. Instead, it had to analyze player actions in real-time and adapt to any user-created level, no matter how chaotic or unconventional.
 
 The video below offers a brief overview of the implementation in Wwise.`
-      }
+      },
       { 
         title: "Procgen music bed for shop atmosphere", 
         video: "https://www.youtube.com/embed/FLcrB9zjiYk", 
