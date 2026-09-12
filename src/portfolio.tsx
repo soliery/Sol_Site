@@ -13,8 +13,8 @@ const CONTENT_DATA = {
   "/king-of-meat": {
     intro: "My work for King of Meat project. Audio and tech described in short videos ",
     videos: [
-      { title: "Music system for multiplayer with UGC", video: "https://www.youtube.com/embed/FLcrB9zjiYk", description: "The unique challenge lay in the game’s format: it’s a networked multiplayer title with robust User-Generated Content (UGC) capabilities. The system couldn’t rely on pre-scripted triggers. Instead, it had to analyze player actions in real-time and adapt to any user-created level, no matter how chaotic or unconventional.
-The video below offers a brief overview of the implementation in Wwise." }
+      { title: "Music system for multiplayer with UGC", video: "https://www.youtube.com/embed/FLcrB9zjiYk", description: 'The unique challenge lay in the game’s format: it’s a networked multiplayer title with robust User-Generated Content (UGC) capabilities. The system couldn’t rely on pre-scripted triggers. Instead, it had to analyze player actions in real-time and adapt to any user-created level, no matter how chaotic or unconventional.
+The video below offers a brief overview of the implementation in Wwise.'}
     ]
   },
   "/redesigns": {
@@ -26,8 +26,7 @@ The video below offers a brief overview of the implementation in Wwise." }
   "/advertising": {
     intro: "Briefly describe your commercial work here.",
     videos: [
-      { title: "Syngenta Commercial Spot. SFX + Mixing", video: "https://www.youtube.com/embed/7ltd8OzdoUM", description: "Full audio replacement for the video, including sound design, voiceover processing, and final mix." }
-    ]
+      { title: "Syngenta Commercial Spot. SFX + Mixing", video: "https://ф
   },
   "/music": {
     intro: "Briefly describe your music compositions here.",
