@@ -4,17 +4,22 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react
 // 1. YOUR DATA (EDIT TEXT & LINKS HERE)
 // ==========================================
 const CONTENT_DATA = {
+  "/king-of-meat": {
+    intro: "My work for King of Meat project. Audio and tech described in short videos ",
+    videos: [
+      { 
+        title: "Music system for multiplayer with UGC", 
+        video: "https://www.youtube.com/embed/FLcrB9zjiYk", 
+        description: `The unique challenge lay in the game’s format: it’s a networked multiplayer title with robust User-Generated Content (UGC) capabilities. The system couldn’t rely on pre-scripted triggers. Instead, it had to analyze player actions in real-time and adapt to any user-created level, no matter how chaotic or unconventional.
+
+The video below offers a brief overview of the implementation in Wwise.`
+      }
+    ]
+  },
   "/factorio": {
     intro: "Sound designer & composer for games and interactive media. Focused on creating high-quality audio experiences.",
     videos: [
       { title: "Factorio Sound Design 1", video: "https://youtube.com", description: "Example description." },
-    ]
-  },
-  "/king-of-meat": {
-    intro: "My work for King of Meat project. Audio and tech described in short videos ",
-    videos: [
-      { title: "Music system for multiplayer with UGC", video: "https://www.youtube.com/embed/FLcrB9zjiYk", description: 'The unique challenge lay in the game’s format: it’s a networked multiplayer title with robust User-Generated Content (UGC) capabilities. The system couldn’t rely on pre-scripted triggers. Instead, it had to analyze player actions in real-time and adapt to any user-created level, no matter how chaotic or unconventional.
-The video below offers a brief overview of the implementation in Wwise.'}
     ]
   },
   "/redesigns": {
@@ -24,9 +29,14 @@ The video below offers a brief overview of the implementation in Wwise.'}
     ]
   },
   "/advertising": {
-    intro: "Briefly describe your commercial work here.",
+    intro: "Commercial and promotional sound design. Delivering clear, punchy, and broadcast-ready audio mixes.",
     videos: [
-      { title: "Syngenta Commercial Spot. SFX + Mixing", video: "https://ф
+      { 
+        title: "Syngenta Commercial Spot. SFX + Mixing", 
+        video: "https://youtube.com", 
+        description: "Full audio replacement for the video, including sound design, voiceover processing, and final mix." 
+      }
+    ]
   },
   "/music": {
     intro: "Briefly describe your music compositions here.",
@@ -99,9 +109,8 @@ const Header = () => (
     <div className="h-40 bg-gradient-to-r from-[#1c120d] to-[#2b1a13] border-b border-white/5" />
     <div className="absolute left-8 -bottom-16 flex items-end gap-6">
       <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden">
-        {/* Заменили пустой блок на картинку: */}
         <img 
-          src="/avatar.jpg" 
+          src="/avatar.png" 
           alt="Val Sol" 
           className="w-full h-full object-cover" 
         />
@@ -137,7 +146,6 @@ const Page = ({ path }) => {
   const data = CONTENT_DATA[path] || { intro: "", videos: [] };
   return (
     <div className="p-8 max-w-7xl mx-auto">
-      {/* Intro text without background plate, matching 'About' font style */}
       {data.intro && (
         <div className="mb-10 max-w-3xl">
           <p className="text-gray-300 text-lg leading-relaxed">
@@ -184,7 +192,6 @@ With a background spanning TV post-production, electronic music, and 250+ field 
                 </p>
               </div>
             } />
-            {/* Этот метод автоматически построит страницы по новому порядку из NAV */}
             {NAV.slice(1).map((item) => (
               <Route 
                 key={item.path} 
@@ -198,4 +205,3 @@ With a background spanning TV post-production, electronic music, and 250+ field 
     </Router>
   );
 }
-
