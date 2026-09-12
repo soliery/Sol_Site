@@ -162,9 +162,17 @@ export default function Portfolio() {
             <Route path="/" element={
               <div className="p-10 max-w-3xl mx-auto">
                 <h2 className="text-4xl font-bold mb-6">About Me</h2>
-                <p className="text-gray-300 text-lg leading-relaxed">
-                  Sound designer & composer for games and interactive media. 
-                  Focused on creating high-quality audio experiences.
+                <p className="text-gray-300 text-lg leading-relaxed" style={{ whiteSpace: 'pre-line' }}>
+                  {`Senior Sound Designer and Technical Audio Engineer
+Credits: King of Meat (Amazon Games), Factorio, Wargaming
+
+For me, audio is far more than just a job. It is a passion driven by a constant search for the most efficient technical solutions and the most expressive sonic design. I believe that sound and music are the ultimate tools for player immersion because they bypass the filters of language and symbols, striking directly at the subconscious to evoke immediate emotion and instinct.
+
+For over 10 years, I have been bridging the gap between creative sound art and technical implementation across PC, console, and mobile games. I specialize in building robust, adaptive, and performance-aware audio frameworks using Wwise, FMOD, and Unreal Engine.
+
+I do not just create sounds; I design how they behave. From asset optimization to writing complex event-driven logic alongside programmers, my goal is always to maximize the impact of audio communication with the player while ensuring flawless technical execution.
+
+With a background spanning TV post-production, electronic music, and 250+ field recording trips, I bring an old-school obsession with pristine audio quality into modern, systemic game development.`}
                 </p>
               </div>
             } />
