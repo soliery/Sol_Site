@@ -19,13 +19,13 @@ const CONTENT_DATA = {
   "/redesigns": {
     intro: "Some are driven by pure curiosity and fun, others are conceptual solutions for specific design challenges.",
     videos: [
-      { title: "Some redesigns", video: "https://www.youtube.com/watch?v=SM2TirBNuDs", description: "Full audio replacement." }
+      { title: "Some redesigns", video: "https://www.youtube.com/embed?v=SM2TirBNuDs", description: "Full audio replacement." }
     ]
   },
   "/advertising": {
     intro: "Briefly describe your commercial work here.",
     videos: [
-      { title: "Syngenta Commercial Spot. SFX + Mixing", video: "https://www.youtube.com/watch?v=7ltd8OzdoUM", description: "Full audio replacement for the video, including sound design, voiceover processing, and final mix." }
+      { title: "Syngenta Commercial Spot. SFX + Mixing", video: "https://www.youtube.com/embed?v=7ltd8OzdoUM", description: "Full audio replacement for the video, including sound design, voiceover processing, and final mix." }
     ]
   },
   "/music": {
