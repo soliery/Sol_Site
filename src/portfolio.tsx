@@ -18,6 +18,11 @@ The video below offers a brief overview of the implementation in Wwise.`
         title: "Procgen music bed for shop atmosphere", 
         video: "https://www.youtube.com/embed/FLcrB9zjiYk", 
         description: `No need for long ambiance loops to create non-repetitive background music. An interesting idea for how to stitch one-shots and pauses into a procedural percussive loop in Wwise. Add a couple of drones and you've got a background bed that never repeats.`
+      },
+      { 
+        title: "Dynamic crowd system. Wwise implementation.", 
+        video: "https://www.youtube.com/embed/01GdKjrN8M8", 
+        description: `it’s about the dynamic crowd reactions system, designed to deliver an authentic, high-energy TV show atmosphere. The system is fully responsive and tightly integrated with real-time player actions. I’ll break down that workflow in my upcoming videos.`
       }
     ]
   },
@@ -38,7 +43,7 @@ The video below offers a brief overview of the implementation in Wwise.`
     videos: [
       { 
         title: "Syngenta Commercial Spot. SFX + Mixing", 
-        video: "https://youtube.com", 
+        video: "https://youtube.com/embed/7ltd8OzdoUM", 
         description: "Full audio replacement for the video, including sound design, voiceover processing, and final mix." 
       }
     ]
