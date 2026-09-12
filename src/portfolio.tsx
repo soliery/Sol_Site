@@ -37,7 +37,7 @@ The video below offers a brief overview of the implementation in Wwise.`
   "/redesigns": {
     intro: "Some are driven by pure curiosity and fun, others are conceptual solutions for specific design challenges.",
     videos: [
-      { title: "Some redesigns", video: "https://www.youtube.com/embed/TQtxutZEYL4", description: "Full audio replacement." }
+      { title: "Some redesigns", video: "https://www.youtube.com/embed/TQtxutZEYL4", description: "Full audio replacement." },
       { title: "Some redesigns", video: "https://www.youtube.com/embed/SM2TirBNuDs", description: "Full audio replacement." }
     ]
   },
