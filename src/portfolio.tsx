@@ -29,12 +29,15 @@ The video below offers a brief overview of the implementation in Wwise.`
   "/factorio": {
     intro: "Sound designer & composer for games and interactive media. Focused on creating high-quality audio experiences.",
     videos: [
-      { title: "Factorio Sound Design 1", video: "https://youtube.com", description: "Example description." },
+      { title: "Factorio Enemies Sound Design", video: "https://www.youtube.com/embed/XDVa0ihX10Q", description: "Descriptive video of enemies audio creation" },
+      { title: "Factorio Combat Robots Sound Design", video: "https://www.youtube.com/embed/JC2ppfKRRNI", description: "Example description." },
+      { title: "Factorio Flying Robots sounds", video: "https://www.youtube.com/embed/AJiDw4c9RIY", description: "Example description." },
     ]
   },
   "/redesigns": {
     intro: "Some are driven by pure curiosity and fun, others are conceptual solutions for specific design challenges.",
     videos: [
+      { title: "Some redesigns", video: "https://www.youtube.com/embed/TQtxutZEYL4", description: "Full audio replacement." }
       { title: "Some redesigns", video: "https://www.youtube.com/embed/SM2TirBNuDs", description: "Full audio replacement." }
     ]
   },
@@ -49,9 +52,10 @@ The video below offers a brief overview of the implementation in Wwise.`
     ]
   },
   "/music": {
-    intro: "Briefly describe your music compositions here.",
+    intro: "Bridging the gap between cinematic media and club culture: electronic music for trailers, games, and live acts.",
     videos: [
-      { title: "Epic Track", video: "https://youtube.com", description: "Orchestral composition." }
+      { title: "Spring Spirit", video: "https://www.youtube.com/embed/6023ImFR3RM", description: "A piece I composed after being deeply moved by the film I Origin." },
+      { title: "Factorio Launch", video: "https://www.youtube.com/embed/qObuy_yCIdg", description: "Music for Factorio launch trailer." }
     ]
   }
 };
