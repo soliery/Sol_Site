@@ -48,6 +48,11 @@ The video below offers a brief overview of the implementation in Wwise.`
         title: "Syngenta Commercial Spot. SFX + Mixing", 
         video: "https://youtube.com/embed/7ltd8OzdoUM", 
         description: "Full audio replacement for the video, including sound design, voiceover processing, and final mix." 
+      },
+      { 
+        title: "Esse Commercial Spot. SFX + Mixing", 
+        video: "https://youtube.com/embed/BbZFDiv3vcw", 
+        description: "A short commercial spot featuring intimate, ASMR-focused sound design. The goal was to create a light yet highly specific audio texture that evokes the sensory feel of the perfume.ф" 
       }
     ]
   },
