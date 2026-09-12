@@ -17,15 +17,15 @@ const CONTENT_DATA = {
     ]
   },
   "/redesigns": {
-    intro: "Briefly describe your redesign projects here.",
+    intro: "Some are driven by pure curiosity and fun, others are conceptual solutions for specific design challenges.",
     videos: [
-      { title: "Doom Redesign", video: "https://youtube.com", description: "Full audio replacement." }
+      { title: "Some redesigns", video: "https://www.youtube.com/watch?v=SM2TirBNuDs", description: "Full audio replacement." }
     ]
   },
   "/advertising": {
     intro: "Briefly describe your commercial work here.",
     videos: [
-      { title: "Commercial Spot", video: "https://youtube.com", description: "Ad spot sound design." }
+      { title: "Syngenta Commercial Spot. SFX + Mixing", video: "https://www.youtube.com/watch?v=7ltd8OzdoUM", description: "Full audio replacement for the video, including sound design, voiceover processing, and final mix." }
     ]
   },
   "/music": {
