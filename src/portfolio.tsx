@@ -136,7 +136,7 @@ const Header = ({ isOpen, setIsOpen }) => (
       <div className="flex items-end gap-6">
         <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden shrink-0">
           <img 
-            src="/avatar.png" 
+            src="/avatar.jpg" 
             alt="Val Sol" 
             className="w-full h-full object-cover" 
           />
