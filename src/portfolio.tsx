@@ -210,7 +210,12 @@ const NavBar = ({ isOpen, setIsOpen }) => {
 const Page = ({ path }) => {
   const data = CONTENT_DATA[path] || { intro: "", videos: [] };
   return (
-    <div className="p-8 max-w-7xl mx-auto">
+    /* 
+      Добавили класс pt-24 (отступ сверху на мобилках) 
+      и md:pt-8 (стандартный отступ на компьютерах)
+    */
+    <div className="p-8 pt-24 md:pt-8 max-w-7xl mx-auto">
+      {/* Intro text without background plate, matching 'About' font style */}
       {data.intro && (
         <div className="mb-10 max-w-3xl">
           <p className="text-gray-300 text-lg leading-relaxed">
