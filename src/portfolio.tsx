@@ -122,41 +122,115 @@ const Background = () => {
     </div>
   );
 };
+// ==========================================
+// 3. COMPONENTS AND LOGIC
+// ==========================================
 
-const Header = () => (
+const Background = () => {
+  const generate = (phase, amp, y) => {
+    let path = "";
+    for (let x = -100; x <= 2200; x += 40) {
+      const yy = Math.sin((x + phase) / 120) * amp + y;
+      path += `${x === -100 ? 'M' : 'L'} ${x} ${yy} `;
+    }
+    return path;
+  };
+
+  return (
+    <div className="fixed inset-0 -z-10 overflow-hidden bg-[#0a0705]">
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0f0a08] via-[#1a110d] to-[#241712]" />
+      <svg className="absolute inset-0 w-full h-full opacity-50" preserveAspectRatio="none">
+        {Array.from({ length: 45 }).map((_, i) => (
+          <path
+            key={i}
+            d={generate(i * 45, 35 + i * 2, 80 + i * 28)}
+            stroke={`rgba(59,130,246,${0.15 + i * 0.01})`}
+            strokeWidth={1}
+            fill="none"
+          />
+        ))}
+      </svg>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0705_90%)]" />
+      <div className="absolute top-[140px] left-0 right-0 h-20 bg-gradient-to-b from-transparent to-[#0a0705]" />
+    </div>
+  );
+};
+
+// Передаем функции управления меню внутрь шапки
+const Header = ({ isOpen, setIsOpen }) => (
   <div className="relative z-20">
     <div className="h-40 bg-gradient-to-r from-[#1c120d] to-[#2b1a13] border-b border-white/5" />
-    <div className="absolute left-8 -bottom-16 flex items-end gap-6">
-      <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden">
-        <img 
-          src="/avatar.jpg" 
-          alt="Val Sol" 
-          className="w-full h-full object-cover" 
-        />
+    <div className="absolute left-8 -bottom-16 flex items-end justify-between right-8 gap-6">
+      <div className="flex items-end gap-6">
+        <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden shrink-0">
+          <img 
+            src="/avatar.png" 
+            alt="Val Sol" 
+            className="w-full h-full object-cover" 
+          />
+        </div>
+        <div className="pb-4">
+          <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
+          <p className="text-blue-400 text-lg font-medium drop-shadow-md">Sound Designer / Composer</p>
+        </div>
       </div>
-      <div className="pb-4">
-        <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
-        <p className="text-blue-400 text-lg font-medium drop-shadow-md">Sound Designer / Composer</p>
-      </div>
+
+      {/* КНОПКА МЕНЮ: Справа сверху относительно контента (видна только на мобилках) */}
+      <button 
+        onClick={() => setIsOpen(!isOpen)} 
+        className="text-gray-400 hover:text-white focus:outline-none md:hidden pb-4"
+        aria-label="Toggle menu"
+      >
+        {isOpen ? (
+          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        ) : (
+          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        )}
+      </button>
     </div>
   </div>
 );
 
-const NavBar = () => {
+const NavBar = ({ isOpen, setIsOpen }) => {
   const location = useLocation();
   return (
-    <div className="relative z-10 flex gap-6 px-6 pt-20 pb-4 border-b border-white/10 bg-[#0a0705]/80 backdrop-blur-md">
-      {NAV.map((item) => (
-        <Link
-          key={item.path}
-          to={item.path}
-          className={`relative px-2 py-1 transition-colors ${
-            location.pathname === item.path ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
-          }`}
-        >
-          <span className="relative z-10">{item.label}</span>
-        </Link>
-      ))}
+    <div className="relative z-10 border-b border-white/10 bg-[#0a0705]/80 backdrop-blur-md">
+      {/* ДЕСКТОПНОЕ МЕНЮ (как обычно на ПК) */}
+      <div className="hidden md:flex gap-6 px-6 pt-20 pb-4">
+        {NAV.map((item) => (
+          <Link
+            key={item.path}
+            to={item.path}
+            className={`relative px-2 py-1 transition-colors ${
+              location.pathname === item.path ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
+            }`}
+          >
+            <span className="relative z-10">{item.label}</span>
+          </Link>
+        ))}
+      </div>
+
+      {/* МОБИЛЬНОЕ ВЫПАДАЮЩЕЕ МЕНЮ (выезжает вниз на смартфонах) */}
+      <div className={`${isOpen ? "block" : "hidden"} md:hidden bg-[#0a0705] pt-20 border-t border-white/5`}>
+        <div className="flex flex-col px-8 py-4 space-y-4">
+          {NAV.map((item) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              onClick={() => setIsOpen(false)}
+              className={`text-lg transition-colors py-1 ${
+                location.pathname === item.path ? "text-blue-400 font-semibold" : "text-gray-400 hover:text-white"
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
@@ -183,12 +257,15 @@ const Page = ({ path }) => {
 };
 
 export default function Portfolio() {
+  // Храним состояние меню тут, чтобы делиться им с Header и NavBar
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <Router>
       <div className="relative min-h-screen text-white font-sans">
         <Background />
-        <Header />
-        <NavBar />
+        <Header isOpen={isOpen} setIsOpen={setIsOpen} />
+        <NavBar isOpen={isOpen} setIsOpen={setIsOpen} />
         <main className="relative z-10">
           <Routes>
             <Route path="/" element={
