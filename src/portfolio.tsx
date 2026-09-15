@@ -93,35 +93,6 @@ const NAV = [
   { path: "/music", label: "Music" },
 ];
 
-const Background = () => {
-  const generate = (phase, amp, y) => {
-    let path = "";
-    for (let x = -100; x <= 2200; x += 40) {
-      const yy = Math.sin((x + phase) / 120) * amp + y;
-      path += `${x === -100 ? 'M' : 'L'} ${x} ${yy} `;
-    }
-    return path;
-  };
-
-  return (
-    <div className="fixed inset-0 -z-10 overflow-hidden bg-[#0a0705]">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0f0a08] via-[#1a110d] to-[#241712]" />
-      <svg className="absolute inset-0 w-full h-full opacity-50" preserveAspectRatio="none">
-        {Array.from({ length: 45 }).map((_, i) => (
-          <path
-            key={i}
-            d={generate(i * 45, 35 + i * 2, 80 + i * 28)}
-            stroke={`rgba(59,130,246,${0.15 + i * 0.01})`}
-            strokeWidth={1}
-            fill="none"
-          />
-        ))}
-      </svg>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0705_90%)]" />
-      <div className="absolute top-[140px] left-0 right-0 h-20 bg-gradient-to-b from-transparent to-[#0a0705]" />
-    </div>
-  );
-};
 // ==========================================
 // 3. COMPONENTS AND LOGIC
 // ==========================================
