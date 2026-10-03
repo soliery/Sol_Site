@@ -189,8 +189,8 @@ export default function Portfolio() {
     <div className="flex items-end gap-5">
       {/* 4. Аватар кликабельный */}
       <button onClick={goHome} className="cursor-pointer" title="Go home">
-        <div className="w-24 h-24 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden shrink-0">
-          <img src="/avatar.jpg" alt="Val Sol" className="w-full h-full object-cover" />
+        <div className="w-36 h-36 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden shrink-0">
+          <img src="/avatar.jpeg" alt="Val Sol" className="w-full h-full object-cover" />
         </div>
       </button>
       {/* 4. Надпись кликабельная */}
