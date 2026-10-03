@@ -163,76 +163,79 @@ export default function Portfolio() {
       <Background />
 
       {/* ===== ШАПКА (sticky, всё вместе) ===== */}
-      <header className="sticky top-0 z-50 bg-[#0a0705]">
-        {/* Коричневый блок (расширен) */}
-        <div className="h-24 bg-gradient-to-r from-[#1c120d] to-[#2b1a13] border-b border-white/5">
+    {/* ===== ШАПКА (sticky, всё вместе) ===== */}
+<header className="sticky top-0 z-50 bg-[#0a0705] shadow-lg">
+  {/* 2. Коричневый блок (h-20) */}
+  <div className="h-20 bg-gradient-to-r from-[#1c120d] to-[#2b1a13] border-b border-white/5">
+    <button
+      onClick={() => setIsOpen(!isOpen)}
+      className="absolute right-6 top-3 text-gray-400 hover:text-white focus:outline-none md:hidden"
+      aria-label="Toggle menu"
+    >
+      {isOpen ? (
+        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      ) : (
+        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      )}
+    </button>
+  </div>
+
+  {/* 3. Аватар + имя (-mt-14) */}
+  <div className="relative flex items-end px-8 -mt-14 pb-2">
+    <div className="flex items-end gap-5">
+      {/* 4. Аватар кликабельный */}
+      <button onClick={goHome} className="cursor-pointer" title="Go home">
+        <div className="w-24 h-24 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden shrink-0">
+          <img src="/avatar.jpg" alt="Val Sol" className="w-full h-full object-cover" />
+        </div>
+      </button>
+      {/* 4. Надпись кликабельная */}
+      <button onClick={goHome} className="cursor-pointer pb-2 text-left">
+        <h1 className="text-2xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
+        <p className="text-blue-400 text-base font-medium drop-shadow-md">Sound Designer / Composer</p>
+      </button>
+    </div>
+  </div>
+
+  {/* Nav-полоска */}
+  <div className="flex items-center justify-end px-6 py-2 border-b border-white/10">
+    <button
+      onClick={goAbout}
+      className={`text-sm transition-colors ${
+        page === "about" ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
+      }`}
+    >
+      About
+    </button>
+  </div>
+
+  {/* Мобильное выпадающее меню */}
+  {isOpen && (
+    <div className="md:hidden bg-[#0a0705] border-t border-white/5">
+      <div className="flex flex-col px-8 py-4 space-y-3">
+        <button
+          onClick={goAbout}
+          className="text-lg text-gray-300 hover:text-white transition-colors py-1 text-left"
+        >
+          About
+        </button>
+        {NAV.map(item => (
           <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="absolute right-6 top-3 text-gray-400 hover:text-white focus:outline-none md:hidden"
-            aria-label="Toggle menu"
+            key={item.id}
+            onClick={() => { goHome(); setTimeout(() => scrollTo(item.id), 100); }}
+            className="text-lg text-gray-300 hover:text-white transition-colors py-1 text-left"
           >
-            {isOpen ? (
-              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
+            {item.label}
           </button>
-        </div>
-
-        {/* Аватар + имя (компактно) */}
-        <div className="relative flex items-end px-8 -mt-12 pb-2">
-          <div className="flex items-end gap-5">
-            <button onClick={goHome} className="cursor-pointer" title="Go home">
-              <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden shrink-0">
-                <img src="/avatar.jpeg" alt="Val Sol" className="w-full h-full object-cover" />
-              </div>
-            </button>
-            <div className="pb-2">
-              <h1 className="text-2xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
-              <p className="text-blue-400 text-base font-medium drop-shadow-md">Sound Designer / Composer</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Nav-полоска */}
-        <div className="flex items-center justify-end px-6 py-2 border-b border-white/10">
-          <button
-            onClick={goAbout}
-            className={`text-sm transition-colors ${
-              page === "about" ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
-            }`}
-          >
-            About
-          </button>
-        </div>
-
-        {/* Мобильное выпадающее меню */}
-        {isOpen && (
-          <div className="md:hidden bg-[#0a0705] border-t border-white/5">
-            <div className="flex flex-col px-8 py-4 space-y-3">
-              <button
-                onClick={goAbout}
-                className="text-lg text-gray-300 hover:text-white transition-colors py-1 text-left"
-              >
-                About
-              </button>
-              {NAV.map(item => (
-                <button
-                  key={item.id}
-                  onClick={() => { goHome(); setTimeout(() => scrollTo(item.id), 100); }}
-                  className="text-lg text-gray-300 hover:text-white transition-colors py-1 text-left"
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-      </header>
+        ))}
+      </div>
+    </div>
+  )}
+</header>   
 
       {/* ===== КОНТЕНТ ===== */}
       <main className="relative z-10">
