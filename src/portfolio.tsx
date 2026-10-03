@@ -98,23 +98,16 @@ const VideoCard = ({ title, video, description }) => {
 };
 
 const Background = () => {
-  const generate = (phase, amp, y, freq) => {
+  const generate = (phase, amp, y) => {
     let path = "";
     for (let x = -100; x <= 2200; x += 40) {
-      const yy = Math.sin((x + phase) / freq) * amp + y;
+      // Плавная огибающая: 0 на краях → 1 в центре
+      const envelope = Math.sin(((x + 100) / 2300) * Math.PI);
+      const yy = Math.sin((x + phase) / 120) * amp * envelope + y;
       path += `${x === -100 ? 'M' : 'L'} ${x} ${yy} `;
     }
     return path;
   };
-
-  // Генерируем параметры один раз (useMemo не нужен — компонент статичный)
-  const lines = Array.from({ length: 45 }).map((_, i) => ({
-    phase: i * 45,
-    amp: 25 + Math.random() * 30,
-    y: 80 + i * 28,
-    freq: 60 + Math.random() * 120, // частота: 60–180 (меньше = более «медленная» волна)
-    alpha: 0.12 + Math.random() * 0.15,
-  }));
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-[#0a0705]">
@@ -125,12 +118,13 @@ const Background = () => {
             <feGaussianBlur stdDeviation="4" result="blur" />
           </filter>
         </defs>
-        {lines.map((l, i) => {
-          const d = generate(l.phase, l.amp, l.y, l.freq);
+        {Array.from({ length: 45 }).map((_, i) => {
+          const d = generate(i * 45, 35 + i * 2, 80 + i * 28);
+          const alpha = 0.15 + i * 0.01;
           return (
             <g key={i}>
-              <path d={d} stroke={`rgba(59,130,246,${l.alpha * 0.6})`} strokeWidth={6} fill="none" filter="url(#glow)" />
-              <path d={d} stroke={`rgba(59,130,246,${l.alpha})`} strokeWidth={1.5} fill="none" />
+              <path d={d} stroke={`rgba(59,130,246,${alpha * 0.6})`} strokeWidth={6} fill="none" filter="url(#glow)" />
+              <path d={d} stroke={`rgba(59,130,246,${alpha})`} strokeWidth={1.5} fill="none" />
             </g>
           );
         })}
@@ -138,7 +132,7 @@ const Background = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0705_90%)]" />
     </div>
   );
-}; 
+};   
 
 // ==========================================
 // 3. MAIN
