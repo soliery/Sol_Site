@@ -1,6 +1,6 @@
 const VideoCard = ({ title, video, description }) => (
   <div className="bg-[#2a1b14]/70 rounded-xl p-4 border border-white/5 hover:border-blue-400/40 transition">
-    <h3 className="text-white mb-3 text-xl font-medium">{title}</h3>   
+    <h3 className="text-white mb-5 text-xl font-medium">{title}</h3>   
     <div className="aspect-video mb-2">
       <iframe src={video} className="w-full h-full rounded-lg" allowFullScreen />
     </div>
