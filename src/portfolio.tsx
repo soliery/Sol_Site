@@ -126,13 +126,13 @@ export default function Portfolio() {
     <div className="relative min-h-screen text-white font-sans">
       <Background />
 
-      {/* ===== HEADER (sticky) ===== */}
-      <header className="sticky top-0 z-50">
-        <div className="relative h-40 bg-gradient-to-r from-[#1c120d] to-[#2b1a13] border-b border-white/5">
-          {/* Бургер (только мобилка) */}
+      {/* ===== ШАПКА (sticky, всё вместе) ===== */}
+      <header className="sticky top-0 z-50 bg-[#0a0705]">
+        {/* Коричневый блок */}
+        <div className="h-14 bg-gradient-to-r from-[#1c120d] to-[#2b1a13] border-b border-white/5">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="absolute right-6 top-4 text-gray-400 hover:text-white focus:outline-none md:hidden"
+            className="absolute right-6 top-2 text-gray-400 hover:text-white focus:outline-none md:hidden"
             aria-label="Toggle menu"
           >
             {isOpen ? (
@@ -146,33 +146,30 @@ export default function Portfolio() {
             )}
           </button>
         </div>
-        <div className="relative flex items-end justify-between px-8 -mt-16 pb-4">
+
+        {/* Аватар + имя */}
+        <div className="relative flex items-end px-8 -mt-14 pb-3">
           <div className="flex items-end gap-6">
-            <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden shrink-0">
+            <div className="w-28 h-28 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden shrink-0">
               <img src="/avatar.jpg" alt="Val Sol" className="w-full h-full object-cover" />
             </div>
-            <div className="pb-4">
-              <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
-              <p className="text-blue-400 text-lg font-medium drop-shadow-md">Sound Designer / Composer</p>
+            <div className="pb-3">
+              <h1 className="text-2xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
+              <p className="text-blue-400 text-base font-medium drop-shadow-md">Sound Designer / Composer</p>
             </div>
           </div>
         </div>
-      </header>
 
-      {/* ===== NAV-ПОЛОСКА (sticky, под шапкой) ===== */}
-      <nav className="sticky top-0 z-40 border-b border-white/10 bg-[#0a0705]/90 backdrop-blur-md">
-        <div className="flex items-center justify-between px-6 py-3">
-          {/* Справа — About */}
-          <div className="flex items-center gap-6 ml-auto">
-            <button
-              onClick={goAbout}
-              className={`text-sm transition-colors ${
-                page === "about" ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
-              }`}
-            >
-              About
-            </button>
-          </div>
+        {/* Nav-полоска */}
+        <div className="flex items-center justify-end px-6 py-2 border-b border-white/10">
+          <button
+            onClick={goAbout}
+            className={`text-sm transition-colors ${
+              page === "about" ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
+            }`}
+          >
+            About
+          </button>
         </div>
 
         {/* Мобильное выпадающее меню */}
@@ -197,12 +194,11 @@ export default function Portfolio() {
             </div>
           </div>
         )}
-      </nav>
+      </header>
 
       {/* ===== КОНТЕНТ ===== */}
       <main className="relative z-10">
         {page === "about" ? (
-          /* ===== ABOUT PAGE ===== */
           <section className="min-h-screen flex items-center">
             <div className="p-10 max-w-3xl mx-auto">
               <h2 className="text-4xl font-bold mb-6">About Me</h2>
@@ -222,7 +218,6 @@ With a background spanning TV post-production, electronic music, and 250+ field 
             </div>
           </section>
         ) : (
-          /* ===== FRONT PAGE (лента видео) ===== */
           <>
             {SECTIONS.map(sec => (
               <section key={sec.id} id={sec.id} className="min-h-screen flex items-center">
@@ -240,4 +235,4 @@ With a background spanning TV post-production, electronic music, and 250+ field 
       </main>
     </div>
   );
-}
+}   
