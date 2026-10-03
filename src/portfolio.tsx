@@ -106,19 +106,34 @@ const Background = () => {
     }
     return path;
   };
+
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-[#0a0705]">
       <div className="absolute inset-0 bg-gradient-to-br from-[#0f0a08] via-[#1a110d] to-[#241712]" />
-      <svg className="absolute inset-0 w-full h-full opacity-50" preserveAspectRatio="none">
-        {Array.from({ length: 45 }).map((_, i) => (
-          <path key={i} d={generate(i * 45, 35 + i * 2, 80 + i * 28)}
-            stroke={`rgba(59,130,246,${0.15 + i * 0.01})`} strokeWidth={1} fill="none" />
-        ))}
+      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+        <defs>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+          </filter>
+        </defs>
+        {Array.from({ length: 45 }).map((_, i) => {
+          const d = generate(i * 45, 35 + i * 2, 80 + i * 28);
+          const color = `59,130,246`;
+          const alpha = 0.15 + i * 0.01;
+          return (
+            <g key={i}>
+              {/* Свечение (широкая, размытая) */}
+              <path d={d} stroke={`rgba(${color},${alpha * 0.6})`} strokeWidth={6} fill="none" filter="url(#glow)" />
+              {/* Сердцевина (узкая, яркая) */}
+              <path d={d} stroke={`rgba(${color},${alpha})`} strokeWidth={1.5} fill="none" />
+            </g>
+          );
+        })}
       </svg>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0705_90%)]" />
     </div>
   );
-};
+};   
 
 // ==========================================
 // 3. MAIN
