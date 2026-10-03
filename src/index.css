@@ -2,7 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+}
+
 body {
   margin: 0;
   font-family: sans-serif;
 }
+
+section {
+  scroll-snap-align: start;
+}   
