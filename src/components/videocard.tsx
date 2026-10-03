@@ -1,7 +1,4 @@
-import { useState } from "react";
-
-const VideoCard = ({ title, video, description }) => {
-  const [playing, setPlaying] = useState(false);
+const VideoCard = ({ title, video, description, isActive, onPlay }) => {
   const videoId = video.split("embed/")[1];
   const thumbnail = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 
@@ -9,7 +6,7 @@ const VideoCard = ({ title, video, description }) => {
     <div className="bg-[#2a1b14]/70 rounded-xl p-4 border border-white/5 hover:border-blue-400/40 transition shadow-lg">
       <h3 className="text-white mb-3 text-3xl font-medium">{title}</h3>
       <div className="aspect-video mb-2 bg-black rounded-lg overflow-hidden relative">
-        {playing ? (
+        {isActive ? (
           <iframe
             src={`${video}?autoplay=1`}
             className="w-full h-full"
@@ -19,7 +16,7 @@ const VideoCard = ({ title, video, description }) => {
           />
         ) : (
           <button
-            onClick={() => setPlaying(true)}
+            onClick={onPlay}
             className="w-full h-full relative group cursor-pointer"
           >
             <img src={thumbnail} alt={title} className="w-full h-full object-cover" />
