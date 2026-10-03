@@ -54,7 +54,7 @@ const SECTIONS = [
   },
 ];
 
-const NAV = [{ id: "about", label: "About" }, ...SECTIONS.map(s => ({ id: s.id, label: s.label }))];
+const NAV = SECTIONS.map(s => ({ id: s.id, label: s.label }));
 
 // ==========================================
 // 2. COMPONENTS
@@ -103,19 +103,33 @@ const Background = () => {
 // ==========================================
 export default function Portfolio() {
   const [isOpen, setIsOpen] = useState(false);
+  const [page, setPage] = useState<"home" | "about">("home");
 
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setIsOpen(false);
   };
 
+  const goHome = () => {
+    setPage("home");
+    setIsOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const goAbout = () => {
+    setPage("about");
+    setIsOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div className="relative min-h-screen text-white font-sans">
       <Background />
 
-      {/* ===== HEADER (sticky, аватар на границе) ===== */}
+      {/* ===== HEADER (sticky) ===== */}
       <header className="sticky top-0 z-50">
         <div className="relative h-40 bg-gradient-to-r from-[#1c120d] to-[#2b1a13] border-b border-white/5">
+          {/* Бургер (только мобилка) */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="absolute right-6 top-4 text-gray-400 hover:text-white focus:outline-none md:hidden"
@@ -143,15 +157,38 @@ export default function Portfolio() {
             </div>
           </div>
         </div>
+      </header>
+
+      {/* ===== NAV-ПОЛОСКА (sticky, под шапкой) ===== */}
+      <nav className="sticky top-0 z-40 border-b border-white/10 bg-[#0a0705]/90 backdrop-blur-md">
+        <div className="flex items-center justify-between px-6 py-3">
+          {/* Справа — About */}
+          <div className="flex items-center gap-6 ml-auto">
+            <button
+              onClick={goAbout}
+              className={`text-sm transition-colors ${
+                page === "about" ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
+              }`}
+            >
+              About
+            </button>
+          </div>
+        </div>
 
         {/* Мобильное выпадающее меню */}
         {isOpen && (
           <div className="md:hidden bg-[#0a0705] border-t border-white/5">
             <div className="flex flex-col px-8 py-4 space-y-3">
+              <button
+                onClick={goAbout}
+                className="text-lg text-gray-300 hover:text-white transition-colors py-1 text-left"
+              >
+                About
+              </button>
               {NAV.map(item => (
                 <button
                   key={item.id}
-                  onClick={() => scrollTo(item.id)}
+                  onClick={() => { goHome(); setTimeout(() => scrollTo(item.id), 100); }}
                   className="text-lg text-gray-300 hover:text-white transition-colors py-1 text-left"
                 >
                   {item.label}
@@ -160,44 +197,47 @@ export default function Portfolio() {
             </div>
           </div>
         )}
-      </header>
+      </nav>
 
-      {/* ===== ЛЕНТА ===== */}
-      <main className="relative z-10 pt-12">
-
-        {/* ABOUT */}
-        <section id="about" className="min-h-screen flex items-center">
-          <div className="p-10 max-w-3xl mx-auto">
-            <h2 className="text-4xl font-bold mb-6">About Me</h2>
-            <p className="text-gray-400 text-lg font-medium mb-6">
-              Senior Sound Designer and Technical Audio Engineer<br />
-              Credits: King of Meat (Amazon Games), Factorio, Wargaming
-            </p>
-            <p className="text-gray-300 leading-relaxed" style={{ whiteSpace: 'pre-line' }}>
-              {`For me, audio is far more than just a job. It is a passion driven by a constant search for the most efficient technical solutions and the most expressive sonic design. I believe that sound and music are the ultimate tools for player immersion because they bypass the filters of language and symbols, striking directly at the subconscious to evoke immediate emotion and instinct.
+      {/* ===== КОНТЕНТ ===== */}
+      <main className="relative z-10">
+        {page === "about" ? (
+          /* ===== ABOUT PAGE ===== */
+          <section className="min-h-screen flex items-center">
+            <div className="p-10 max-w-3xl mx-auto">
+              <h2 className="text-4xl font-bold mb-6">About Me</h2>
+              <p className="text-gray-400 text-lg font-medium mb-6">
+                Senior Sound Designer and Technical Audio Engineer<br />
+                Credits: King of Meat (Amazon Games), Factorio, Wargaming
+              </p>
+              <p className="text-gray-300 leading-relaxed" style={{ whiteSpace: 'pre-line' }}>
+                {`For me, audio is far more than just a job. It is a passion driven by a constant search for the most efficient technical solutions and the most expressive sonic design. I believe that sound and music are the ultimate tools for player immersion because they bypass the filters of language and symbols, striking directly at the subconscious to evoke immediate emotion and instinct.
 
 For over 10 years, I have been bridging the gap between creative sound art and technical implementation across PC, console, and mobile games. I specialize in building robust, adaptive, and performance-aware audio frameworks using Wwise, FMOD, and Unreal Engine.
 
 I do not just create sounds; I design how they behave. From asset optimization to writing complex event-driven logic alongside programmers, my goal is always to maximize the impact of audio communication with the player while ensuring flawless technical execution.
 
 With a background spanning TV post-production, electronic music, and 250+ field recording trips, I bring an old-school obsession with pristine audio quality into modern, systemic game development.`}
-            </p>
-          </div>
-        </section>
-
-        {/* PROJECT SECTIONS */}
-        {SECTIONS.map(sec => (
-          <section key={sec.id} id={sec.id} className="min-h-screen flex items-center">
-            <div className="p-8 max-w-7xl mx-auto w-full">
-              <h2 className="text-3xl font-bold mb-4 text-white">{sec.label}</h2>
-              <p className="text-gray-300 text-lg leading-relaxed mb-8 max-w-3xl">{sec.intro}</p>
-              <div className="grid md:grid-cols-2 gap-8">
-                {sec.videos.map((v, i) => <VideoCard key={i} {...v} />)}
-              </div>
+              </p>
             </div>
           </section>
-        ))}
+        ) : (
+          /* ===== FRONT PAGE (лента видео) ===== */
+          <>
+            {SECTIONS.map(sec => (
+              <section key={sec.id} id={sec.id} className="min-h-screen flex items-center">
+                <div className="p-8 max-w-7xl mx-auto w-full">
+                  <h2 className="text-3xl font-bold mb-4 text-white">{sec.label}</h2>
+                  <p className="text-gray-300 text-lg leading-relaxed mb-8 max-w-3xl">{sec.intro}</p>
+                  <div className="grid md:grid-cols-2 gap-8">
+                    {sec.videos.map((v, i) => <VideoCard key={i} {...v} />)}
+                  </div>
+                </div>
+              </section>
+            ))}
+          </>
+        )}
       </main>
     </div>
   );
-}   
+}
