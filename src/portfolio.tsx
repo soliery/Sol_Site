@@ -140,6 +140,7 @@ const Background = () => {
 export default function Portfolio() {
   const [isOpen, setIsOpen] = useState(false);
   const [page, setPage] = useState<"home" | "about">("home");
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -263,7 +264,14 @@ With a background spanning TV post-production, electronic music, and 250+ field 
                   <h2 className="text-3xl font-bold mb-4 text-white">{sec.label}</h2>
                   <p className="text-gray-300 text-lg leading-relaxed mb-8 max-w-3xl">{sec.intro}</p>
                   <div className="grid md:grid-cols-2 gap-8">
-                    {sec.videos.map((v, i) => <VideoCard key={i} {...v} />)}
+                    {sec.videos.map((v, i) => (
+  <VideoCard
+    key={i}
+    {...v}
+    isActive={activeVideo === v.video}
+    onPlay={() => setActiveVideo(v.video)}
+  />
+))}
                   </div>
                 </div>
               </section>
