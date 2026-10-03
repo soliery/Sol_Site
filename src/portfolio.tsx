@@ -165,7 +165,7 @@ export default function Portfolio() {
       {/* ===== ШАПКА (sticky, всё вместе) ===== */}
 <header className="sticky top-0 z-50 bg-[#0a0705] shadow-lg">
   {/* Коричневый блок (вернули h-24) */}
-  <div className="h-24 bg-gradient-to-r from-[#1c120d] to-[#2b1a13] border-b border-white/5">
+  <div className="h-[84px] bg-gradient-to-r from-[#1c120d] to-[#2b1a13] border-b border-white/5">
     <button
       onClick={() => setIsOpen(!isOpen)}
       className="absolute right-6 top-3 text-gray-400 hover:text-white focus:outline-none md:hidden"
@@ -184,7 +184,7 @@ export default function Portfolio() {
   </div>
 
   {/* Аватар + имя (тёмная зона сужена: pb-1) */}
-  <div className="relative flex items-end px-8 -mt-14 pb-1">
+  <div className="relative flex items-end px-8 -mt-[49px] pb-1">
     <div className="flex items-end gap-5">
       <button onClick={goHome} className="cursor-pointer" title="Go home">
         <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden shrink-0">
