@@ -154,30 +154,33 @@ export default function Portfolio() {
           </button>
         </div>
 
-        {/* Аватар + имя + About (суженный, без pb) */}
-        <div className="relative flex items-end justify-between px-8 -mt-16 bg-[#0a0705]">
-          <div className="flex items-end gap-5">
-            <button onClick={goHome} className="cursor-pointer" title="Go home">
-              <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden shrink-0">
-                <img src="/avatar.jpeg" alt="Val Sol" className="w-full h-full object-cover" />
-              </div>
-            </button>
-            <button onClick={goHome} className="cursor-pointer pb-2 text-left">
+        {/* Тёмный блок (начинается ровно на границе) */}
+        <div className="relative px-8 bg-[#0a0705] pb-4">
+          {/* Аватар — absolute, торчит через границу наверх */}
+          <button onClick={goHome} className="absolute -top-16 left-8 cursor-pointer" title="Go home">
+            <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden">
+              <img src="/avatar.jpeg" alt="Val Sol" className="w-full h-full object-cover" />
+            </div>
+          </button>
+
+          {/* Надпись — под границей, справа от аватара */}
+          <div className="flex items-end justify-between pl-40 pt-6">
+            <button onClick={goHome} className="cursor-pointer text-left">
               <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
               <p className="text-blue-400 text-base font-medium drop-shadow-md">Sound Designer / Composer</p>
             </button>
+            <button
+              onClick={goAbout}
+              className={`text-sm transition-colors ${
+                page === "about" ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
+              }`}
+            >
+              About
+            </button>
           </div>
-          <button
-            onClick={goAbout}
-            className={`pb-3 text-sm transition-colors ${
-              page === "about" ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
-            }`}
-          >
-            About
-          </button>
         </div>
 
-        {/* Градиент (после тёмного блока) */}
+        {/* Градиент */}
         <div className="h-10 bg-gradient-to-b from-[#0a0705] to-transparent" />
 
         {/* Мобильное меню */}
