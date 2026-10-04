@@ -154,32 +154,31 @@ export default function Portfolio() {
           </button>
         </div>
 
-        {/* Аватар + имя */}
-        <div className="relative flex items-end px-8 -mt-[49px] pb-1">
-          <div className="flex items-end gap-5">
-            <button onClick={goHome} className="cursor-pointer" title="Go home">
-              <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden shrink-0">
-                <img src="/avatar.jpeg" alt="Val Sol" className="w-full h-full object-cover" />
-              </div>
-            </button>
-            <button onClick={goHome} className="cursor-pointer pb-2 text-left">
-              <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
-              <p className="text-blue-400 text-base font-medium drop-shadow-md">Sound Designer / Composer</p>
-            </button>
-          </div>
-        </div>
+       {/* Аватар + имя + About (одна строка) */}
+<div className="relative flex items-end justify-between px-8 -mt-[49px] pb-1">
+  <div className="flex items-end gap-5">
+    <button onClick={goHome} className="cursor-pointer" title="Go home">
+      <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden shrink-0">
+        <img src="/avatar.jpg" alt="Val Sol" className="w-full h-full object-cover" />
+      </div>
+    </button>
+    <button onClick={goHome} className="cursor-pointer pb-2 text-left">
+      <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
+      <p className="text-blue-400 text-base font-medium drop-shadow-md">Sound Designer / Composer</p>
+    </button>
+  </div>
+  <button
+    onClick={goAbout}
+    className={`pb-3 text-sm transition-colors ${
+      page === "about" ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
+    }`}
+  >
+    About
+  </button>
+</div>
 
-        {/* Nav-полоска */}
-        <div className="flex items-center justify-end px-6 py-2 border-b border-white/10">
-          <button
-            onClick={goAbout}
-            className={`text-sm transition-colors ${
-              page === "about" ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
-            }`}
-          >
-            About
-          </button>
-        </div>
+{/* Градиент: контент уходит под шапку */}
+<div className="h-10 bg-gradient-to-b from-[#0a0705] to-transparent" />   
 
         {/* Мобильное меню */}
         {isOpen && (
