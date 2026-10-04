@@ -1,5 +1,5 @@
 import { useState } from "react";
-import VideoCard from "./VideoCard";
+import VideoCard from "./videocard";
 // ==========================================
 // 1. DATA
 // ==========================================
