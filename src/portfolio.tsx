@@ -133,8 +133,8 @@ export default function Portfolio() {
     <div className="relative min-h-screen text-white font-sans">
       <Background />
 
-      {/* ===== ШАПКА (sticky, всё вместе) ===== */}
-      <header className="sticky top-0 z-50 bg-[#0a0705] shadow-lg">
+      {/* ===== ШАПКА (sticky) ===== */}
+      <header className="sticky top-0 z-50 shadow-lg">
         {/* Коричневый блок */}
         <div className="h-24 bg-gradient-to-r from-[#1c120d] to-[#2b1a13] border-b border-white/5">
           <button
@@ -154,31 +154,31 @@ export default function Portfolio() {
           </button>
         </div>
 
-       {/* Аватар + имя + About (одна строка) */}
-<div className="relative flex items-end justify-between px-8 -mt-[49px] pb-1">
-  <div className="flex items-end gap-5">
-    <button onClick={goHome} className="cursor-pointer" title="Go home">
-      <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden shrink-0">
-        <img src="/avatar.jpg" alt="Val Sol" className="w-full h-full object-cover" />
-      </div>
-    </button>
-    <button onClick={goHome} className="cursor-pointer pb-2 text-left">
-      <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
-      <p className="text-blue-400 text-base font-medium drop-shadow-md">Sound Designer / Composer</p>
-    </button>
-  </div>
-  <button
-    onClick={goAbout}
-    className={`pb-3 text-sm transition-colors ${
-      page === "about" ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
-    }`}
-  >
-    About
-  </button>
-</div>
+        {/* Аватар + имя + About */}
+        <div className="relative flex items-end justify-between px-8 -mt-[49px] pb-1 bg-[#0a0705]">
+          <div className="flex items-end gap-5">
+            <button onClick={goHome} className="cursor-pointer" title="Go home">
+              <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden shrink-0">
+                <img src="/avatar.jpg" alt="Val Sol" className="w-full h-full object-cover" />
+              </div>
+            </button>
+            <button onClick={goHome} className="cursor-pointer pb-2 text-left">
+              <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
+              <p className="text-blue-400 text-base font-medium drop-shadow-md">Sound Designer / Composer</p>
+            </button>
+          </div>
+          <button
+            onClick={goAbout}
+            className={`pb-3 text-sm transition-colors ${
+              page === "about" ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
+            }`}
+          >
+            About
+          </button>
+        </div>
 
-{/* Градиент: контент уходит под шапку */}
-<div className="h-10 bg-gradient-to-b from-[#0a0705] to-transparent" />   
+        {/* Градиент: контент уходит под шапку */}
+        <div className="h-10 bg-gradient-to-b from-transparent to-[#0a0705]" />
 
         {/* Мобильное меню */}
         {isOpen && (
