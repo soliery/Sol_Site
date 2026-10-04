@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import VideoCard from "./VideoCard";
 
 // ==========================================
 // 1. DATA
@@ -59,49 +60,10 @@ const NAV = SECTIONS.map(s => ({ id: s.id, label: s.label }));
 // ==========================================
 // 2. COMPONENTS
 // ==========================================
-const VideoCard = ({ title, video, description }) => {
-  const [playing, setPlaying] = useState(false);
-  const videoId = video.split("embed/")[1];
-  const thumbnail = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-
-  return (
-    <div className="bg-[#2a1b14]/70 rounded-xl p-4 border border-white/5 hover:border-blue-400/40 transition shadow-lg">
-      <h3 className="text-white mb-2 font-semibold">{title}</h3>
-      <div className="aspect-video mb-2 bg-black rounded-lg overflow-hidden relative">
-        {playing ? (
-          <iframe
-            src={`${video}?autoplay=1`}
-            className="w-full h-full"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            title={title}
-          />
-        ) : (
-          <button
-            onClick={() => setPlaying(true)}
-            className="w-full h-full relative group cursor-pointer"
-          >
-            <img src={thumbnail} alt={title} className="w-full h-full object-cover" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-16 h-16 rounded-full bg-black/60 flex items-center justify-center group-hover:bg-black/80 transition">
-                <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-            </div>
-          </button>
-        )}
-      </div>
-      <p className="text-gray-300 text-sm whitespace-pre-line">{description}</p>
-    </div>
-  );
-};
-
 const Background = () => {
   const generate = (phase, amp, y) => {
     let path = "";
     for (let x = -100; x <= 2200; x += 40) {
-      // Плавная огибающая: 0 на краях → 1 в центре
       const envelope = Math.sin(((x + 100) / 2300) * Math.PI);
       const yy = Math.sin((x + phase) / 120) * amp * envelope + y;
       path += `${x === -100 ? 'M' : 'L'} ${x} ${yy} `;
@@ -132,7 +94,7 @@ const Background = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0705_90%)]" />
     </div>
   );
-};   
+};
 
 // ==========================================
 // 3. MAIN
@@ -140,6 +102,8 @@ const Background = () => {
 export default function Portfolio() {
   const [isOpen, setIsOpen] = useState(false);
   const [page, setPage] = useState<"home" | "about">("home");
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const playerRef = useRef({});
 
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -158,84 +122,91 @@ export default function Portfolio() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const playVideo = (video) => {
+    Object.values(playerRef.current).forEach(p => {
+      if (p && p.stopVideo) p.stopVideo();
+    });
+    setActiveVideo(video);
+  };
+
   return (
     <div className="relative min-h-screen text-white font-sans">
       <Background />
 
       {/* ===== ШАПКА (sticky, всё вместе) ===== */}
-<header className="sticky top-0 z-50 bg-[#0a0705] shadow-lg">
-  {/* Коричневый блок (вернули h-24) */}
-  <div className="h-[84px] bg-gradient-to-r from-[#1c120d] to-[#2b1a13] border-b border-white/5">
-    <button
-      onClick={() => setIsOpen(!isOpen)}
-      className="absolute right-6 top-3 text-gray-400 hover:text-white focus:outline-none md:hidden"
-      aria-label="Toggle menu"
-    >
-      {isOpen ? (
-        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      ) : (
-        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      )}
-    </button>
-  </div>
-
-  {/* Аватар + имя (тёмная зона сужена: pb-1) */}
-  <div className="relative flex items-end px-8 -mt-[49px] pb-1">
-    <div className="flex items-end gap-5">
-      <button onClick={goHome} className="cursor-pointer" title="Go home">
-        <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden shrink-0">
-          <img src="/avatar.jpeg" alt="Val Sol" className="w-full h-full object-cover" />
-        </div>
-      </button>
-      <button onClick={goHome} className="cursor-pointer pb-2 text-left">
-        <h1 className="text-2xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
-        <p className="text-blue-400 text-base font-medium drop-shadow-md">Sound Designer / Composer</p>
-      </button>
-    </div>
-  </div>
-
-  {/* Nav-полоска */}
-  <div className="flex items-center justify-end px-6 py-2 border-b border-white/10">
-    <button
-      onClick={goAbout}
-      className={`text-sm transition-colors ${
-        page === "about" ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
-      }`}
-    >
-      About
-    </button>
-  </div>
-
-  {/* Мобильное меню */}
-  {isOpen && (
-    <div className="md:hidden bg-[#0a0705] border-t border-white/5">
-      <div className="flex flex-col px-8 py-4 space-y-3">
-        <button
-          onClick={goAbout}
-          className="text-lg text-gray-300 hover:text-white transition-colors py-1 text-left"
-        >
-          About
-        </button>
-        {NAV.map(item => (
+      <header className="sticky top-0 z-50 bg-[#0a0705] shadow-lg">
+        {/* Коричневый блок */}
+        <div className="h-24 bg-gradient-to-r from-[#1c120d] to-[#2b1a13] border-b border-white/5">
           <button
-            key={item.id}
-            onClick={() => { goHome(); setTimeout(() => scrollTo(item.id), 100); }}
-            className="text-lg text-gray-300 hover:text-white transition-colors py-1 text-left"
+            onClick={() => setIsOpen(!isOpen)}
+            className="absolute right-6 top-3 text-gray-400 hover:text-white focus:outline-none md:hidden"
+            aria-label="Toggle menu"
           >
-            {item.label}
+            {isOpen ? (
+              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
           </button>
-        ))}
-      </div>
-    </div>
-  )}
-</header> 
+        </div>
+
+        {/* Аватар + имя */}
+        <div className="relative flex items-end px-8 -mt-[49px] pb-1">
+          <div className="flex items-end gap-5">
+            <button onClick={goHome} className="cursor-pointer" title="Go home">
+              <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden shrink-0">
+                <img src="/avatar.jpg" alt="Val Sol" className="w-full h-full object-cover" />
+              </div>
+            </button>
+            <button onClick={goHome} className="cursor-pointer pb-2 text-left">
+              <h1 className="text-2xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
+              <p className="text-blue-400 text-base font-medium drop-shadow-md">Sound Designer / Composer</p>
+            </button>
+          </div>
+        </div>
+
+        {/* Nav-полоска */}
+        <div className="flex items-center justify-end px-6 py-2 border-b border-white/10">
+          <button
+            onClick={goAbout}
+            className={`text-sm transition-colors ${
+              page === "about" ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
+            }`}
+          >
+            About
+          </button>
+        </div>
+
+        {/* Мобильное меню */}
+        {isOpen && (
+          <div className="md:hidden bg-[#0a0705] border-t border-white/5">
+            <div className="flex flex-col px-8 py-4 space-y-3">
+              <button
+                onClick={goAbout}
+                className="text-lg text-gray-300 hover:text-white transition-colors py-1 text-left"
+              >
+                About
+              </button>
+              {NAV.map(item => (
+                <button
+                  key={item.id}
+                  onClick={() => { goHome(); setTimeout(() => scrollTo(item.id), 100); }}
+                  className="text-lg text-gray-300 hover:text-white transition-colors py-1 text-left"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </header>
 
       {/* ===== КОНТЕНТ ===== */}
-      <main className="relative z-10">
+      <main className="relative z-10 pt-8">
         {page === "about" ? (
           <section className="min-h-screen flex items-center">
             <div className="p-10 max-w-3xl mx-auto">
@@ -263,7 +234,15 @@ With a background spanning TV post-production, electronic music, and 250+ field 
                   <h2 className="text-3xl font-bold mb-4 text-white">{sec.label}</h2>
                   <p className="text-gray-300 text-lg leading-relaxed mb-8 max-w-3xl">{sec.intro}</p>
                   <div className="grid md:grid-cols-2 gap-8">
-                    {sec.videos.map((v, i) => <VideoCard key={i} {...v} />)}
+                    {sec.videos.map((v, i) => (
+                      <VideoCard
+                        key={i}
+                        {...v}
+                        isActive={activeVideo === v.video}
+                        onPlay={() => playVideo(v.video)}
+                        playerRef={playerRef}
+                      />
+                    ))}
                   </div>
                 </div>
               </section>
@@ -273,4 +252,4 @@ With a background spanning TV post-production, electronic music, and 250+ field 
       </main>
     </div>
   );
-}
+}   
