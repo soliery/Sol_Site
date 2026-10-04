@@ -134,7 +134,7 @@ export default function Portfolio() {
       <Background />
 
       {/* ===== ШАПКА (sticky) ===== */}
-      <header className="sticky top-0 z-50" style={{ boxShadow: "0 24px 48px -12px rgba(0,0,0,0.7)" }}>
+      <header className="sticky top-0 z-50">
         {/* Коричневый блок */}
         <div className="h-40 bg-gradient-to-r from-[#1c120d] to-[#2b1a13] border-b border-white/5">
           <button
@@ -178,7 +178,7 @@ export default function Portfolio() {
         </div>
 
         {/* Градиент: контент уходит под шапку */}
-      
+      <div className="h-20 bg-gradient-to-b from-black via-black/80 to-transparent" />   
 
         {/* Мобильное меню */}
         {isOpen && (
