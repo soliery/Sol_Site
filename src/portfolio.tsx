@@ -134,9 +134,9 @@ export default function Portfolio() {
       <Background />
 
       {/* ===== ШАПКА (sticky) ===== */}
-      <header className="sticky top-0 z-50 shadow-lg">
+      <header className="sticky top-0 z-50" style={{ boxShadow: "0 24px 48px -12px rgba(0,0,0,0.7)" }}>
         {/* Коричневый блок */}
-        <div className="h-24 bg-gradient-to-r from-[#1c120d] to-[#2b1a13] border-b border-white/5">
+        <div className="h-40 bg-gradient-to-r from-[#1c120d] to-[#2b1a13] border-b border-white/5">
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="absolute right-6 top-3 text-gray-400 hover:text-white focus:outline-none md:hidden"
@@ -155,7 +155,7 @@ export default function Portfolio() {
         </div>
 
         {/* Аватар + имя + About */}
-        <div className="relative flex items-end justify-between px-8 -mt-[49px] pb-1 bg-[#0a0705]">
+       <div className="relative flex items-end justify-between px-8 -mt-16 pb-1 bg-[#0a0705]">
           <div className="flex items-end gap-5">
             <button onClick={goHome} className="cursor-pointer" title="Go home">
               <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden shrink-0">
