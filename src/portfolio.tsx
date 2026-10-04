@@ -178,7 +178,7 @@ export default function Portfolio() {
         </div>
 
         {/* Градиент: контент уходит под шапку */}
-        <div className="h-10 bg-gradient-to-b from-transparent to-[#0a0705]" />
+       <div className="h-10 bg-gradient-to-b from-[#0a0705] to-transparent" />
 
         {/* Мобильное меню */}
         {isOpen && (
