@@ -33,7 +33,7 @@ const VideoCard = ({ title, video, description, isActive, onPlay, playerRef }) =
 
   return (
     <div className="bg-[#2a1b14]/70 rounded-xl p-4 border border-white/5 hover:border-blue-400/40 transition shadow-lg">
-      <h3 className="text-white mb-3 text-3xl font-medium">{title}</h3>
+      <h3 className="text-white mb-3 text-2xl font-medium">{title}</h3>
       <div className="aspect-video mb-2 bg-black rounded-lg overflow-hidden relative">
         <iframe
           ref={iframeRef}
