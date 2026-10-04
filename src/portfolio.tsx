@@ -155,7 +155,7 @@ export default function Portfolio() {
         </div>
 
         {/* Аватар + имя + About */}
-       <div className="relative flex items-end justify-between px-8 -mt-16 pb-1 bg-[#0a0705]">
+       <div className="relative flex items-end justify-between px-8 -mt-16 bg-[#0a0705]">
           <div className="flex items-end gap-5">
             <button onClick={goHome} className="cursor-pointer" title="Go home">
               <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden shrink-0">
@@ -178,7 +178,7 @@ export default function Portfolio() {
         </div>
 
         {/* Градиент: контент уходит под шапку */}
-      <div className="h-20 bg-gradient-to-b from-black via-black/80 to-transparent" />   
+         <div className="h-10 bg-gradient-to-b from-[#0a0705] via-[#0a0705]/80 to-transparent" />
 
         {/* Мобильное меню */}
         {isOpen && (
