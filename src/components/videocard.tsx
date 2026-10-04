@@ -2,25 +2,32 @@ import { useEffect, useRef } from "react";
 
 const VideoCard = ({ title, video, description, isActive, onPlay, playerRef }) => {
   const iframeRef = useRef(null);
+  const playerCreated = useRef(false);
   const videoId = video.split("embed/")[1];
   const thumbnail = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 
+  // Создаём player один раз при монтировании
   useEffect(() => {
-    if (isActive && iframeRef.current && window.YT) {
+    if (!playerCreated.current && iframeRef.current && window.YT) {
+      playerCreated.current = true;
       const player = new YT.Player(iframeRef.current, {
         events: {
           onReady: (e) => {
             playerRef.current[videoId] = e.target;
-            e.target.playVideo();
           }
         }
       });
-      return () => {
-        if (playerRef.current[videoId]) {
-          playerRef.current[videoId].destroy();
-          delete playerRef.current[videoId];
-        }
-      };
+    }
+  }, []);
+
+  // Управляем воспроизведением
+  useEffect(() => {
+    const player = playerRef.current[videoId];
+    if (!player) return;
+    if (isActive) {
+      player.playVideo();
+    } else {
+      player.stopVideo();
     }
   }, [isActive]);
 
@@ -30,7 +37,7 @@ const VideoCard = ({ title, video, description, isActive, onPlay, playerRef }) =
       <div className="aspect-video mb-2 bg-black rounded-lg overflow-hidden relative">
         <iframe
           ref={iframeRef}
-          src={isActive ? `${video}?autoplay=1&enablejsapi=1` : ""}
+          src={`${video}?enablejsapi=1`}
           className="w-full h-full"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
