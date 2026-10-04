@@ -159,7 +159,7 @@ export default function Portfolio() {
           <div className="flex items-end gap-5">
             <button onClick={goHome} className="cursor-pointer" title="Go home">
               <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden shrink-0">
-                <img src="/avatar.jpg" alt="Val Sol" className="w-full h-full object-cover" />
+                <img src="/avatar.jpeg" alt="Val Sol" className="w-full h-full object-cover" />
               </div>
             </button>
             <button onClick={goHome} className="cursor-pointer pb-2 text-left">
