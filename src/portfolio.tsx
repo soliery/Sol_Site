@@ -163,7 +163,7 @@ export default function Portfolio() {
               </div>
             </button>
             <button onClick={goHome} className="cursor-pointer pb-2 text-left">
-              <h1 className="text-2xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
+              <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
               <p className="text-blue-400 text-base font-medium drop-shadow-md">Sound Designer / Composer</p>
             </button>
           </div>
