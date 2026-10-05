@@ -85,8 +85,8 @@ const Background = () => {
           const alpha = 0.15 + i * 0.01;
           return (
             <g key={i}>
-              <path d={d} stroke={`rgba(34,211,238,${alpha * 0.6})`} strokeWidth={6} fill="none" filter="url(#glow)" />
-              <path d={d} stroke={`rgba(34,211,238,${alpha})`} strokeWidth={1.5} fill="none" />
+              <path d={d} stroke={`rgba(59,130,246,${alpha * 0.6})`} strokeWidth={6} fill="none" filter="url(#glow)" />
+              <path d={d} stroke={`rgba(59,130,246,${alpha})`} strokeWidth={1.5} fill="none" />
             </g>
           );
         })}
