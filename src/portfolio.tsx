@@ -72,7 +72,7 @@ const Background = () => {
   };
 
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden bg-[#0a0705]">
+    <div className="fixed inset-0 -z-10 overflow-hidden bg-[#0a0806]">
       <div className="absolute inset-0 bg-gradient-to-br from-[#0f0a08] via-[#1a110d] to-[#241712]" />
       <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
         <defs>
@@ -85,13 +85,13 @@ const Background = () => {
           const alpha = 0.15 + i * 0.01;
           return (
             <g key={i}>
-              <path d={d} stroke={`rgba(59,130,246,${alpha * 0.6})`} strokeWidth={6} fill="none" filter="url(#glow)" />
-              <path d={d} stroke={`rgba(59,130,246,${alpha})`} strokeWidth={1.5} fill="none" />
+              <path d={d} stroke={`rgba(45,212,191,${alpha * 0.6})`} strokeWidth={6} fill="none" filter="url(#glow)" />
+              <path d={d} stroke={`rgba(45,212,191,${alpha})`} strokeWidth={1.5} fill="none" />
             </g>
           );
         })}
       </svg>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0705_90%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0806_90%)]" />
     </div>
   );
 };
@@ -135,8 +135,8 @@ export default function Portfolio() {
 
       {/* ===== ШАПКА (sticky) ===== */}
       <header className="sticky top-0 z-50">
-        {/* Коричневый блок */}
-        <div className="h-24 bg-gradient-to-r from-[#1c120d] to-[#2b1a13] border-b border-white/5">
+        {/* Оранжево-коричневый блок */}
+        <div className="h-24 bg-gradient-to-r from-[#1a0f08] to-[#2e1a0a] border-b border-white/5">
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="absolute right-6 top-3 text-gray-400 hover:text-white focus:outline-none md:hidden"
@@ -154,25 +154,22 @@ export default function Portfolio() {
           </button>
         </div>
 
-        {/* Тёмный блок (начинается ровно на границе) */}
-        <div className="relative px-8 bg-[#0a0705] pb-4">
-          {/* Аватар — absolute, торчит через границу наверх */}
+        {/* Тёмный блок */}
+        <div className="relative px-8 bg-[#0a0806]">
           <button onClick={goHome} className="absolute -top-16 left-8 cursor-pointer" title="Go home">
-            <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0705] shadow-2xl overflow-hidden">
+            <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0806] shadow-2xl overflow-hidden">
               <img src="/avatar.jpeg" alt="Val Sol" className="w-full h-full object-cover" />
             </div>
           </button>
-
-          {/* Надпись — под границей, справа от аватара */}
-          <div className="flex items-end justify-between pl-40 pt-6">
+          <div className="flex items-center justify-between pl-40">
             <button onClick={goHome} className="cursor-pointer text-left">
               <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
-              <p className="text-blue-400 text-base font-medium drop-shadow-md">Sound Designer / Composer</p>
+              <p className="text-teal-400 text-base font-medium drop-shadow-md">Sound Designer / Composer</p>
             </button>
             <button
               onClick={goAbout}
               className={`text-sm transition-colors ${
-                page === "about" ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
+                page === "about" ? "text-teal-400 font-medium" : "text-gray-400 hover:text-white"
               }`}
             >
               About
@@ -181,11 +178,11 @@ export default function Portfolio() {
         </div>
 
         {/* Градиент */}
-        <div className="h-10 bg-gradient-to-b from-[#0a0705] to-transparent" />
+        <div className="h-10 bg-gradient-to-b from-[#0a0806] to-transparent" />
 
         {/* Мобильное меню */}
         {isOpen && (
-          <div className="md:hidden bg-[#0a0705] border-t border-white/5">
+          <div className="md:hidden bg-[#0a0806] border-t border-white/5">
             <div className="flex flex-col px-8 py-4 space-y-3">
               <button
                 onClick={goAbout}
