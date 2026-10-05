@@ -8,6 +8,8 @@ const VideoCard = ({ title, video, description, isActive, onPlay, playerRef }) =
 
   // Создаём player один раз при монтировании
   useEffect(() => {
+  let interval;
+  const init = () => {
     if (!playerCreated.current && iframeRef.current && window.YT) {
       playerCreated.current = true;
       const player = new YT.Player(iframeRef.current, {
@@ -18,7 +20,21 @@ const VideoCard = ({ title, video, description, isActive, onPlay, playerRef }) =
         }
       });
     }
-  }, []);
+  };
+
+  if (window.YT) {
+    init();
+  } else {
+    interval = setInterval(() => {
+      if (window.YT) {
+        clearInterval(interval);
+        init();
+      }
+    }, 100);
+  }
+
+  return () => clearInterval(interval);
+}, []);   
 
   // Управляем воспроизведением
   useEffect(() => {
