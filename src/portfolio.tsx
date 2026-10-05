@@ -164,7 +164,7 @@ export default function Portfolio() {
           </button>
 
           {/* Надпись — под границей, справа от аватара */}
-          <div className="flex items-end justify-between pl-40 pt-2">
+          <div className="flex items-start justify-between pl-40 pt-2">
             <button onClick={goHome} className="cursor-pointer text-left">
               <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
               <p className="text-blue-400 text-base font-medium drop-shadow-md">Sound Designer / Composer</p>
