@@ -136,7 +136,7 @@ export default function Portfolio() {
       {/* ===== ШАПКА (sticky) ===== */}
       <header className="sticky top-0 z-50">
         {/* Коричневый блок */}
-        <div className="h-24 bg-gradient-to-r from-[#1a1208] to-[#2e1c0a] border-b border-white/5">
+        <div className="h-24 bg-gradient-to-r from-[#0f0a06] via-[#1a120a] to-[#241810] border-b border-white/5">
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="absolute right-6 top-3 text-gray-400 hover:text-white focus:outline-none md:hidden"
