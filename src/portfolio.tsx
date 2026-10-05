@@ -166,7 +166,7 @@ export default function Portfolio() {
           {/* Надпись — под границей, справа от аватара */}
           <div className="flex items-end justify-between pl-40 pt-6">
             <button onClick={goHome} className="cursor-pointer text-left">
-              <h1 className="text-4xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
+              <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
               <p className="text-blue-400 text-base font-medium drop-shadow-md">Sound Designer / Composer</p>
             </button>
             <button
@@ -212,7 +212,7 @@ export default function Portfolio() {
         {page === "about" ? (
           <section className="min-h-screen flex items-center">
             <div className="p-10 max-w-3xl mx-auto">
-              <h2 className="text-3xl font-bold mb-6">About Me</h2>
+              <h2 className="text-2xl font-bold mb-6">About Me</h2>
               <p className="text-gray-400 text-lg font-medium mb-6">
                 Senior Sound Designer and Technical Audio Engineer<br />
                 Credits: King of Meat (Amazon Games), Factorio, Wargaming
