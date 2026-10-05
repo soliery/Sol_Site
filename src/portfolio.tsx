@@ -155,7 +155,7 @@ export default function Portfolio() {
         </div>
 
         {/* Тёмный блок */}
-        <div className="relative px-8 bg-[#0a0806]">
+        <div className="relative px-8 bg-[#0a0806]" pb-4>
           <button onClick={goHome} className="absolute -top-16 left-8 cursor-pointer" title="Go home">
             <div className="w-32 h-32 rounded-2xl bg-gray-500 border-4 border-[#0a0806] shadow-2xl overflow-hidden">
               <img src="/avatar.jpeg" alt="Val Sol" className="w-full h-full object-cover" />
