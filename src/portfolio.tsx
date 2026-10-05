@@ -73,7 +73,7 @@ const Background = () => {
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-[#0a0705]">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0f0a08] via-[#1a110d] to-[#241712]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0f0a06] via-[#1a120a] to-[#241810]" />
       <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
         <defs>
           <filter id="glow">
@@ -85,8 +85,8 @@ const Background = () => {
           const alpha = 0.15 + i * 0.01;
           return (
             <g key={i}>
-              <path d={d} stroke={`rgba(59,130,246,${alpha * 0.6})`} strokeWidth={6} fill="none" filter="url(#glow)" />
-              <path d={d} stroke={`rgba(59,130,246,${alpha})`} strokeWidth={1.5} fill="none" />
+              <path d={d} stroke={`rgba(129,140,248,${alpha * 0.6})`} strokeWidth={6} fill="none" filter="url(#glow)" />
+              <path d={d} stroke={`rgba(129,140,248,${alpha})`} strokeWidth={1.5} fill="none" />
             </g>
           );
         })}
@@ -136,7 +136,7 @@ export default function Portfolio() {
       {/* ===== ШАПКА (sticky) ===== */}
       <header className="sticky top-0 z-50">
         {/* Коричневый блок */}
-        <div className="h-24 bg-gradient-to-r from-[#1c120d] to-[#2b1a13] border-b border-white/5">
+        <div className="h-24 bg-gradient-to-r from-[#1a1208] to-[#2e1c0a] border-b border-white/5">
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="absolute right-6 top-3 text-gray-400 hover:text-white focus:outline-none md:hidden"
@@ -167,12 +167,12 @@ export default function Portfolio() {
           <div className="flex items-start justify-between pl-40 pt-2">
             <button onClick={goHome} className="cursor-pointer text-left">
               <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
-              <p className="text-blue-400 text-base font-medium drop-shadow-md">Sound Designer / Composer</p>
+              <p className="text-indigo-400 text-base font-medium drop-shadow-md">Sound Designer / Composer</p>
             </button>
             <button
               onClick={goAbout}
               className={`text-sm transition-colors ${
-                page === "about" ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
+                page === "about" ? "text-indigo-400 font-medium" : "text-gray-400 hover:text-white"
               }`}
             >
               About
