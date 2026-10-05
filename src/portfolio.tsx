@@ -85,8 +85,8 @@ const Background = () => {
           const alpha = 0.15 + i * 0.01;
           return (
             <g key={i}>
-              <path d={d} stroke={`rgba(45,212,191,${alpha * 0.6})`} strokeWidth={6} fill="none" filter="url(#glow)" />
-              <path d={d} stroke={`rgba(45,212,191,${alpha})`} strokeWidth={1.5} fill="none" />
+              <path d={d} stroke={`rgba(34,211,238,${alpha * 0.6})`} strokeWidth={6} fill="none" filter="url(#glow)" />
+              <path d={d} stroke={`rgba(34,211,238,${alpha})`} strokeWidth={1.5} fill="none" />
             </g>
           );
         })}
@@ -164,12 +164,12 @@ export default function Portfolio() {
           <div className="flex items-center justify-between pl-40">
             <button onClick={goHome} className="cursor-pointer text-left">
               <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
-              <p className="text-teal-400 text-base font-medium drop-shadow-md">Sound Designer / Composer</p>
+              <p className="text-cyan-400 text-base font-medium drop-shadow-md">Sound Designer / Composer</p>
             </button>
             <button
               onClick={goAbout}
               className={`text-sm transition-colors ${
-                page === "about" ? "text-teal-400 font-medium" : "text-gray-400 hover:text-white"
+                page === "about" ? "text-cyan-400 font-medium" : "text-gray-400 hover:text-white"
               }`}
             >
               About
