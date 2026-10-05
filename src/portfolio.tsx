@@ -167,12 +167,12 @@ export default function Portfolio() {
           <div className="flex items-start justify-between pl-40 pt-2">
             <button onClick={goHome} className="cursor-pointer text-left">
               <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-md">Val Sol</h1>
-              <p className="text-cyan-400 text-base font-medium drop-shadow-md">Sound Designer / Composer</p>
+              <p className="text-blue-400 text-base font-medium drop-shadow-md">Sound Designer / Composer</p>
             </button>
             <button
               onClick={goAbout}
               className={`text-sm transition-colors ${
-                page === "about" ? "text-cyan-400 font-medium" : "text-gray-400 hover:text-white"
+                page === "about" ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
               }`}
             >
               About
