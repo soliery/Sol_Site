@@ -212,7 +212,7 @@ export default function Portfolio() {
         {page === "about" ? (
           <section className="min-h-screen flex items-center">
             <div className="p-10 max-w-3xl mx-auto">
-              <h2 className="text-2xl font-bold mb-6">About Me</h2>
+              <h2 className="text-xl font-bold mb-6">About Me</h2>
               <p className="text-gray-400 text-lg font-medium mb-6">
                 Senior Sound Designer and Technical Audio Engineer<br />
                 Credits: King of Meat (Amazon Games), Factorio, Wargaming
