@@ -171,7 +171,7 @@ export default function Portfolio() {
             </button>
             <button
               onClick={goAbout}
-              className={`text-sm transition-colors ${
+              className={`hidden md:inline text-sm transition-colors ${
                 page === "about" ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"
               }`}
             >
