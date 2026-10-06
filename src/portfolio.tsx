@@ -8,7 +8,7 @@ const SECTIONS = [
   {
     id: "king-of-meat",
     label: "King of Meat",
-    intro: "My work for the King of Meat project. Audio and tech described in short videos",
+    intro: "My work for King of Meat project. Audio and tech described in short videos",
     videos: [
       { title: "Music system for multiplayer with UGC", video: "https://www.youtube.com/embed/ZQqCkzDb6kI", description: "The unique challenge lay in the game's format: it's a networked multiplayer title with robust User-Generated Content (UGC) capabilities. The system couldn't rely on pre-scripted triggers. Instead, it had to analyze player actions in real-time and adapt to any user-created level, no matter how chaotic or unconventional.\n\nThe video below offers a brief overview of the implementation in Wwise." },
       { title: "Procgen music bed for shop atmosphere", video: "https://www.youtube.com/embed/FLcrB9zjiYk", description: "No need for long ambiance loops to create non-repetitive background music. An interesting idea for how to stitch one-shots and pauses into a procedural percussive loop in Wwise. Add a couple of drones and you've got a background bed that never repeats." },
@@ -16,35 +16,32 @@ const SECTIONS = [
     ],
   },
   {
-    id:  "/factorio": {
-    intro: "Sound design and Lua implementation engineered to scale up to thousands of gameplay objects, music composition for the launch trailer. It was a pleasure and a great journey to work with the Factorio team.",
+    id: "factorio",
+    label: "Factorio",
+    intro: "Sound designer & composer for games and interactive media. Focused on creating high-quality audio experiences.",
     videos: [
       { title: "Factorio Enemies Sound Design", video: "https://www.youtube.com/embed/XDVa0ihX10Q", description: "Descriptive video of enemies audio creation" },
       { title: "Factorio Combat Robots Sound Design", video: "https://www.youtube.com/embed/JC2ppfKRRNI", description: "Example description." },
       { title: "Factorio Flying Robots sounds", video: "https://www.youtube.com/embed/AJiDw4c9RIY", description: "Example description." },
-    ]
+    ],
   },
-  "/redesigns": {
+  {
+    id: "redesigns",
+    label: "Redesigns",
     intro: "Some are driven by pure curiosity and fun, others are conceptual solutions for specific design challenges.",
     videos: [
-      { title: "Showreel One", video: "https://www.youtube.com/embed/TQtxutZEYL4", description: "Full audio replacement." },
-      { title: "Showreel Two", video: "https://www.youtube.com/embed/SM2TirBNuDs", description: "Full audio replacement." }
-    ]
+      { title: "Some redesigns", video: "https://www.youtube.com/embed/TQtxutZEYL4", description: "Full audio replacement." },
+      { title: "Some redesigns", video: "https://www.youtube.com/embed/SM2TirBNuDs", description: "Full audio replacement." },
+    ],
   },
-  "/advertising": {
+  {
+    id: "advertising",
+    label: "Advertising",
     intro: "Commercial and promotional sound design. Delivering clear, punchy, and broadcast-ready audio mixes.",
     videos: [
-      { 
-        title: "Syngenta Commercial Spot. Sfx, Mixing", 
-        video: "https://youtube.com/embed/7ltd8OzdoUM", 
-        description: "Full audio replacement for the video, including sound design, voiceover processing, and final mix." 
-      },
-      { 
-        title: "Esse Commercial Spot. Music, Sfx Mixing", 
-        video: "https://youtube.com/embed/BbZFDiv3vcw", 
-        description: "A short commercial spot featuring intimate, ASMR-focused music and sound design. The goal was to create a light yet highly specific audio texture that evokes the sensory feel of the perfume.ф" 
-      }
-    ]
+      { title: "Syngenta Commercial Spot. SFX + Mixing", video: "https://youtube.com/embed/7ltd8OzdoUM", description: "Full audio replacement for the video, including sound design, voiceover processing, and final mix." },
+      { title: "Esse Commercial Spot. SFX + Mixing", video: "https://youtube.com/embed/BbZFDiv3vcw", description: "A short commercial spot featuring intimate, ASMR-focused sound design." },
+    ],
   },
   {
     id: "music",
